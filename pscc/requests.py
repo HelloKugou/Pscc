@@ -22,4 +22,5 @@ async def fetch(url, spider, session, semaphore):
                 logger.error('Error: {} {}'.format(url, response.status))
                 return None
         except:
-return None
+            pass
+    return None
