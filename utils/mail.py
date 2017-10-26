@@ -14,16 +14,30 @@ from email.mime.multipart import MIMEMultipart
 from email.header import Header
 import email
 
+
+#列表类
+class LS:
+    mail_address=[
+        "linhanqiu1123@163.com"
+    ]
 #配置类
 class Cfg:
     mail_config = {
         "sender":"workinform@163.com",
-        "receiver":"linhanqiu1123@163.com",
+        "receiver":[],
         "username":"workinform@163.com",
         "password":"linhanqiu1123",
+        #smtp服务器
         "smtpserver":"smtp.163.com"
     }
+    @staticmethod
+    def insert_md():
+        global mail_config
+        for i in LS.mail_address:
+            mail_config["receiver"].append(i)
+
     sys_config = {
+        #图片地址
         "path": "/home/linhanqiu/img/1.jpg"
     }
 
