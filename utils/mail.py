@@ -94,9 +94,17 @@ class Mail:
         s = self.login()
         #创建内容
         m = Content().text()
-        s.sendmail(self.sender,self.receiver,m.as_string())
-        print("已发送")
-        s.getreply()
+        try:
+            s.sendmail(self.sender,self.receiver,m.as_string())
+            print("已发送")
+        except smtplib.SMTPRecipientsRefused:
+            print('Recipient refused')
+        except smtplib.SMTPAuthenticationError:
+            print('Auth error')
+        except smtplib.SMTPSenderRefused:
+            print('Sender refused')
+        except smtplib.SMTPException as e:
+            print(e.message)
         s.quit()
     def __call__(self, *args, **kwargs):
         return self.send()
