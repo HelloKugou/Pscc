@@ -10,11 +10,15 @@ try:
 except:
     loop = asyncio.get_event_loop()
 
-conn_dt = {"host":"127.0.0.1",
+conn_dt = {"host":"192.168.0.202",
            "port":3306,
-           "user":"linhanqiu",
-           "password":"linhanqiu",
-           "db":"shape"}
+           "user":"suqi",
+           "password":"123456",
+           "db":"spider"}
+import time
+date = time.strftime("%Y-%m-%d",time.localtime())
+import pandas as pd
+
 async def conn():
     pool = await aiomysql.create_pool(host=conn_dt.get("host"),
                                       port=conn_dt.get("port"),
@@ -24,9 +28,16 @@ async def conn():
                                       loop=loop)
     async  with pool.acquire() as con:
         async with con.cursor() as cur:
-            await cur.execute("select * from user limit 1")
-            a = await cur.fetchone()
-            print(a)
+            await cur.execute("select source,count(*) as c from yd_new group by source")
+            rd = await cur.fetchone()
+
+    d = pd.DataFrame({
+        "抓取来源":[],
+        "数量":[]
+    })
+    t = ("数据来源","数量")
+    rd = zip(t,rd)
+    print(rd)
     pool.close()
     await pool.wait_closed()
 loop.run_until_complete(conn())
