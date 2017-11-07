@@ -24,7 +24,7 @@ class LS:
 class Cfg:
     mail_config = {
         "sender":"workinform@163.com",
-        "receiver":[],
+        "receiver":["linhanqiu1123@163.com"],
         "username":"workinform@163.com",
         "password":"linhanqiu1123",
         #smtp服务器
@@ -43,7 +43,7 @@ class Cfg:
 
 #内容类
 class Content:
-    def __init__(self,id=None,word="今日数据正常，暂无反常数据产生",subject=u"每日通知"):
+    def __init__(self,id=None,word="天气好",subject=u"这是什么"):
         self.id = id
         self.word = word
         self.subject = subject
@@ -86,8 +86,10 @@ class Mail:
         s.connect(self.server)
         s.login(self.username,self.password)
         #调式过程
-        # s.set_debuglevel(1)
+        s.set_debuglevel(1)
+
         s.ehlo("begin connect")
+
         # s.starttls()
         return s
     def send(self):
@@ -103,8 +105,8 @@ class Mail:
             print('Auth error')
         except smtplib.SMTPSenderRefused:
             print('Sender refused')
-        except smtplib.SMTPException as e:
-            print(e.message)
+        # except smtplib.SMTPException as e:
+        #     print(e.message)
         s.quit()
     def __call__(self, *args, **kwargs):
         return self.send()
