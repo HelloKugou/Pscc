@@ -23,12 +23,12 @@ class LS:
 #配置类
 class Cfg:
     mail_config = {
-        "sender":"workinform@163.com",
+        "sender":"pythonscientists@sina.com",
         "receiver":["linhanqiu1123@163.com"],
         "username":"workinform@163.com",
-        "password":"linhanqiu1123",
+        "password":"linhanqiu",
         #smtp服务器
-        "smtpserver":"smtp.163.com"
+        "smtpserver":"smtp.sina.com"
     }
     @staticmethod
     def insert_md():
