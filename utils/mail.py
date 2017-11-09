@@ -5,114 +5,79 @@
 
 #!/usr/bin/env python3
 #coding: utf-8
-# coding: utf-8
+
 import smtplib
-import mimetypes
-from email.mime.text import MIMEText
-from email.mime.image import MIMEImage
-from email.mime.multipart import MIMEMultipart
-from email.header import Header
-import email
+import email.mime.multipart
+import email.mime.text
 
+msg = email.mime.multipart.MIMEMultipart()
 
-#列表类
-class LS:
-    mail_address=[
-        "linhanqiu1123@163.com"
-    ]
-#配置类
 class Cfg:
-    mail_config = {
-        "sender":"pythonscientists@sina.com",
-        "receiver":["linhanqiu1123@163.com"],
+    #服务器配置
+    s_cfg = {
+        "server":"smtp.163.com",
+        "port":25,
+    }
+    #登录设置
+    l_cfg = {
         "username":"workinform@163.com",
-        "password":"linhanqiu",
-        #smtp服务器
-        "smtpserver":"smtp.sina.com"
+        "password":"linhanqiu1123",
     }
-    @staticmethod
-    def insert_md():
-        global mail_config
-        for i in LS.mail_address:
-            mail_config["receiver"].append(i)
-
-    sys_config = {
-        #图片地址
-        "path": "/home/linhanqiu/img/1.jpg"
+    #邮箱设置
+    m_cfg = {
+        "sender":"workinform@163.com",
+        "receiver":["linhanqiu1123@163.com"],
     }
 
-#内容类
-class Content:
-    def __init__(self,id=None,word="天气好",subject=u"这是什么"):
-        self.id = id
-        self.word = word
-        self.subject = subject
-        self.html = "<p1></p1>"
-    #内容格式，其他格式还在添加
-    def text(self):
-        msgRoot = MIMEMultipart("related")
-        msgRoot['Subject'] = Header(self.subject, 'utf-8')
-        msgRoot['From'] = Header('爬虫任务情况<workinform@163.com>','utf-8')
-        msgRoot['To'] = "linhanqiu1123@163.com"
-        msgRoot.preamble = 'This is a multi-part message in MIME format.'
-        #设置转化部分
-        msgAlternative = MIMEMultipart("alternative")
-        msgRoot.attach(msgAlternative)
-        #添加纯文本信息，（添加模板）
-        msgText = MIMEText(self.word,'plain','utf-8')
-        msgAlternative.attach(msgText)
-        #设定html信息，（添加模板）
-        msgHtml = MIMEText(self.html,'html','utf-8')
-        msgRoot.attach(msgHtml)
-        #设置图片信息,（matplotlib画图）
-        fp = open(Cfg.sys_config["path"], 'rb')
-        msgImage = MIMEImage(fp.read())
-        fp.close()
-        msgImage.add_header('Content-ID', '<image1>')
-        msgRoot.attach(msgImage)
-        return msgRoot
-
-#邮件基类
-class Mail:
+#内容基类
+class Msg:
     def __init__(self):
-        self.cfg = Cfg.mail_config
-        self.server = self.cfg["smtpserver"]
-        self.sender = self.cfg["sender"]
-        self.receiver = self.cfg["receiver"]
-        self.username = self.cfg["username"]
-        self.password = self.cfg["password"]
-    def login(self):
-        s = smtplib.SMTP()
-        s.connect(self.server)
-        s.login(self.username,self.password)
-        #调式过程
-        s.set_debuglevel(1)
+        pass
+    @staticmethod
+    def load():
+        msg['Subject'] = '每日数据情况'
+        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['To'] = 'linhanqiu1123@163.com'
+        content = 'hedassdaasdsadd'
+        txt = email.mime.text.MIMEText(content)
+        msg.attach(txt)
+        return msg
+#####################################################
+#娱道邮件
+class YD(Msg):
+    def __init__(self):
+        super(YD,self).__init__()
 
-        s.ehlo("begin connect")
+#商道邮件
+class SD(Msg):
+    def __init__(self):
+        super(SD,self).__init__()
 
-        # s.starttls()
-        return s
-    def send(self):
-        s = self.login()
-        #创建内容
-        m = Content().text()
-        try:
-            s.sendmail(self.sender,self.receiver,m.as_string())
-            print("已发送")
-        except smtplib.SMTPRecipientsRefused:
-            print('Recipient refused')
-        except smtplib.SMTPAuthenticationError:
-            print('Auth error')
-        except smtplib.SMTPSenderRefused:
-            print('Sender refused')
-        # except smtplib.SMTPException as e:
-        #     print(e.message)
-        s.quit()
-    def __call__(self, *args, **kwargs):
-        return self.send()
+#新德里新闻情况
+class India(Msg):
+    def __init__(self):
+        super(India,self).__init__()
 
-#商道邮件子类
-#娱道邮件子类
+#####################################################
+class Mail:
+    def __init__(self,type):
+        self.name = "默认"
+        self.t = type
+        self.cs = Cfg.s_cfg
+        self.cl = Cfg.l_cfg
+        self.cm = Cfg.m_cfg
+    def load_server(self):
+        smtp = smtplib.SMTP()
+        smtp.connect(self.cs["server"],self.cs["port"])
+        smtp.login(self.cl["username"],self.cl["password"])
+        return smtp
+    def send_mail(self):
+        msg = Msg.load()
+        smtp = self.load_server()
+        smtp.sendmail(self.cm["sender"],self.cm["receiver"],msg.as_string())
+        smtp.quit()
+        print("发送成功")
+
 if __name__=="__main__":
-    mail = Mail()
-    mail()
+    a = Mail("a")
+    a.send_mail()
