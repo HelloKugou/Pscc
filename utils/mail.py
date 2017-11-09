@@ -44,6 +44,7 @@ import asyncio
 import json
 import numpy as np
 import matplotlib.pyplot as plt
+import time
 #创建数据库conn
 async def get_conn():
     pool = await aiomysql.create_pool(
@@ -88,9 +89,15 @@ class YD(Msg):
         content = await self.read_f()
         x = [i[0] for i in content]
         y = [i[1] for i in content]
-        plt.plot(x,y,color="red")
-        plt.savefig("1.png")
-
+        n = 8
+        index = np.arange(n)
+        width = 0.35
+        plt.bar(index,y,width)
+        plt.xlabel("类型")
+        plt.ylabel("数量")
+        plt.xticks(index+width,x)
+        timea = time.strftime("%Y-%m-%d",time.localtime())
+        plt.savefig(str(time)+"娱道.jpg")
 
 #商道邮件
 class SD(Msg):

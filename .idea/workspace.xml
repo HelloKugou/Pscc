@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04917ed2-b98d-4f27-a8b8-bd29f91574fb" name="Default" comment="" />
+    <list default="true" id="04917ed2-b98d-4f27-a8b8-bd29f91574fb" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/utils/mail.py" afterPath="$PROJECT_DIR$/utils/mail.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,10 +49,11 @@
       <file leaf-file-name="mail.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/utils/mail.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="201">
-              <caret line="62" column="8" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+            <state relative-caret-position="342">
+              <caret line="97" column="33" lean-forward="true" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
               <folding>
-                <element signature="e#97#111#0" expanded="true" />
+                <element signature="e#40#54#0" expanded="true" />
+                <marker date="1510236169772" expanded="true" signature="1347:1418" ph="select sourc... yd_new" />
               </folding>
             </state>
           </provider>
@@ -108,8 +111,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="41" />
     <option name="y" value="27" />
-    <option name="width" value="921" />
+    <option name="width" value="937" />
     <option name="height" value="1032" />
   </component>
   <component name="ProjectView">
@@ -330,9 +334,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="27" width="1920" height="1053" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23290598" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34983128" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995495" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -715,7 +718,7 @@
         <state relative-caret-position="66">
           <caret line="3" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="37" />
           <folding>
-            <element signature="e#0#14#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -730,10 +733,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/utils/mail.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="62" column="8" lean-forward="false" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="8" />
+        <state relative-caret-position="342">
+          <caret line="97" column="33" lean-forward="true" selection-start-line="97" selection-start-column="33" selection-end-line="97" selection-end-column="33" />
           <folding>
-            <element signature="e#97#111#0" expanded="true" />
+            <element signature="e#40#54#0" expanded="true" />
+            <marker date="1510236169772" expanded="true" signature="1347:1418" ph="select sourc... yd_new" />
           </folding>
         </state>
       </provider>
