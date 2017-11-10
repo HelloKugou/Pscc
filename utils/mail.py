@@ -63,52 +63,111 @@ async def get_conn():
 class YD(Msg):
     def __init__(self):
         super(YD,self).__init__()
-        self.sql = "select source,count(*)as c  from yd_new group by source ORDER by c desc;"
+        self.sql = "select source,count(*)as c  from yd_new where create_date='{}' group by source ORDER by c desc;".format(today)
     async def read_f(self):
         conn = await get_conn()
         async with conn.cursor() as cor:
             await cor.execute(self.sql)
             r = await cor.fetchall()
-            print(type(r[0][0]))
+            # print(type(r[0][0]),r[0][0])
             return r
     #生成格式化text
     async def load_data(self):
-        msg['Subject'] = '每日数据情况'
+        msg['Subject'] = str(today)+'-----娱道数据情况'
         msg['From'] = 'DailyStatus<workinform@163.com>'
         msg['To'] = 'linhanqiu1123@163.com'
         content = await self.read_f()
         #格式化成字符串
-        content = json.dumps(dict(zip((i[0] for i in content),(i[1] for i in content))))
+        # content = json.dumps(dict(zip((i[0] for i in content),(i[1] for i in content))))
+        content = list(content)
+        content = ["来源："+(str(i[0])+"\n数量:"+str(i[1])+"\n") for i in content]
+        content = ''.join(content)
+        print(content)
         txt = email.mime.text.MIMEText(content)
         msg.attach(txt)
         return msg
-    async def load_data1(self):
-        msg['Subject'] = '每日数据情况'
-        msg['From'] = 'DailyStatus<workinform@163.com>'
-        msg['To'] = 'linhanqiu1123@163.com'
-        content = await self.read_f()
-        x = [i[0] for i in content]
-        y = [i[1] for i in content]
-        n = 8
-        index = np.arange(n)
-        width = 0.35
-        plt.bar(index,y,width)
-        plt.xlabel("类型")
-        plt.ylabel("数量")
-        plt.xticks(index+width,x)
-        timea = time.strftime("%Y-%m-%d",time.localtime())
-        plt.savefig(str(time)+"娱道.jpg")
+    # async def load_data1(self):
+    #     msg['Subject'] = '每日数据情况'
+    #     msg['From'] = 'DailyStatus<workinform@163.com>'
+    #     msg['To'] = 'linhanqiu1123@163.com'
+    #     content = await self.read_f()
+    #     x = [i[0] for i in content]
+    #     y = [i[1] for i in content]
+    #     n = len(x)
+    #     index = np.arange(n)
+    #     width = 0.5
+    #     plt.bar(index, y, width)
+    #     plt.xlabel("类型")
+    #     plt.ylabel("数量")
+    #     plt.xticks(index + width, x)
+    #     timea = time.strftime("%Y-%m-%d", time.localtime())
+    #     plt.savefig(str(timea) + "娱道.jpg")
+    #     #提取图片，发送图片
+    #     fp = open('2017-11-10娱道.jpg', 'rb')
+    #     img = MIMEImage(fp.read())
+    #     img.add_header('Content-ID', 'digglife')
+    #     msg.attach(img)
+    #     return msg
+
 
 #商道邮件
 class SD(Msg):
     def __init__(self):
         super(SD,self).__init__()
+        self.sql = "select source,count(*)as c  from sd_new where create_date='{}' group by source ORDER by c desc;".format(today)
+    async def read_f(self):
+        conn = await get_conn()
+        async with conn.cursor() as cor:
+            await cor.execute(self.sql)
+            r = await cor.fetchall()
+            # print(type(r[0][0]),r[0][0])
+            return r
+    #生成格式化text
+    async def load_data(self):
+        msg['Subject'] = str(today)+'-----商道数据情况'
+        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['To'] = 'linhanqiu1123@163.com'
+        content = await self.read_f()
+        #格式化成字符串
+        # content = json.dumps(dict(zip((i[0] for i in content),(i[1] for i in content))))
+        content = list(content)
+        content = ["来源："+(str(i[0])+"\n数量:"+str(i[1])+"\n") for i in content]
+        content = ''.join(content)
+        print(content)
+        txt = email.mime.text.MIMEText(content)
+        msg.attach(txt)
+        return msg
 
 #新德里新闻情况
 class India(Msg):
     def __init__(self):
         super(India,self).__init__()
+        self.sql = "select text_f,count(*)as c  from __news_data_india_data1 where create_date='{}' group by text_f ORDER by c desc;".format(
+        today)
 
+    async def read_f(self):
+        conn = await get_conn()
+        async with conn.cursor() as cor:
+            await cor.execute(self.sql)
+            r = await cor.fetchall()
+            # print(type(r[0][0]),r[0][0])
+            return r
+
+    # 生成格式化text
+    async def load_data(self):
+        msg['Subject'] = str(today) + '-----新德里数据情况'
+        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['To'] = 'linhanqiu1123@163.com'
+        content = await self.read_f()
+        # 格式化成字符串
+        # content = json.dumps(dict(zip((i[0] for i in content),(i[1] for i in content))))
+        content = list(content)
+        content = ["来源：" + (str(i[0]) + "\n数量:" + str(i[1]) + "\n") for i in content]
+        content = ''.join(content)
+        print(content)
+        txt = email.mime.text.MIMEText(content)
+        msg.attach(txt)
+        return msg
 #####################################################
 class Mail:
     def __init__(self,type=None):
@@ -151,5 +210,5 @@ if __name__=="__main__":
         loop = asyncio.set_event_loop_policy(uvloop.EventLoopPolicy)
     except:
         loop = asyncio.get_event_loop()
-    loop.run_until_complete(Mail(2).send_mail())
+    loop.run_until_complete(Mail(4).send_mail())
     loop.close()
