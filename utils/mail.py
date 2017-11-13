@@ -45,6 +45,9 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 import time
+
+today = time.strftime("%Y-%m-%d",time.localtime())
+
 #创建数据库conn
 async def get_conn():
     pool = await aiomysql.create_pool(
