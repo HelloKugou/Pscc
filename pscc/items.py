@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 #-*-coding:utf-8-*-
 
-from selector import Selector
+from pscc.selector import Selector
 from html import unescape
+from utils.logconfig import load_my_logging_cfg
 
 class ItemType(type):
     def __new__(mcs, name, bases, namespace):

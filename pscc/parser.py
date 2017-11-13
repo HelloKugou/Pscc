@@ -6,8 +6,8 @@ from urllib.parse import urljoin
 import aiohttp
 from lxml import etree
 
-from pscc.request import fetch
-from .log import logger
+from pscc.requests import fetch
+from utils.logconfig import load_my_logging_cfg
 
 
 class BaseParser(object):
