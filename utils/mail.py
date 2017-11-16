@@ -1,27 +1,33 @@
 
+#!/usr/bin/env python
+#-*-coding:utf-8*-
+#这个工具是每日邮件提醒工具
+
+
 #!/usr/bin/env python3
 #coding: utf-8
 
 import smtplib
 import email.mime.multipart
 import email.mime.text
+from email.mime.image import MIMEImage
 
 msg = email.mime.multipart.MIMEMultipart()
 
 class Cfg:
     #服务器配置
     s_cfg = {
-        "server":"smtp.163.com",
-        "port":25,
+        "server":"smtp-mail.outlook.com",
+        "port":587,
     }
     #登录设置
     l_cfg = {
-        "username":"workinform@163.com",
-        "password":"linhanqiu1123",
+        "username":"datawork-msconvey@outlook.com",
+        "password":"Linhanqiu1123.",
     }
     #邮箱设置
     m_cfg = {
-        "sender":"workinform@163.com",
+        "sender":"datawork-msconvey@outlook.com",
         "receiver":["linhanqiu1123@163.com"],
     }
 
@@ -32,7 +38,7 @@ class Msg:
     @staticmethod
     def load():
         msg['Subject'] = '每日数据情况'
-        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['From'] = 'DailyStatus<datawork-msconvey@outlook.com>'
         msg['To'] = 'linhanqiu1123@163.com'
         content = 'hedassdaasdsadd'
         txt = email.mime.text.MIMEText(content)
@@ -45,22 +51,20 @@ import json
 import numpy as np
 import matplotlib.pyplot as plt
 import time
-
-today = time.strftime("%Y-%m-%d",time.localtime())
-
 #创建数据库conn
 async def get_conn():
     pool = await aiomysql.create_pool(
-        host="127.0.0.1",
+        host="127.0.01",
         port=3306,
-        db="test",
-        user="root",
-        password="",
+        db="spider",
+        user="bigdata",
+        password="zhongguangzhangshi",
         charset="utf8",
         loop=loop)
     conn = await pool.acquire()
     return conn
 
+today = time.strftime("%Y-%m-%d",time.localtime())
 #####################################################
 #娱道邮件
 class YD(Msg):
@@ -77,7 +81,7 @@ class YD(Msg):
     #生成格式化text
     async def load_data(self):
         msg['Subject'] = str(today)+'-----娱道数据情况'
-        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['From'] = 'DailyStatus<datawork-msconvey@outlook.com>'
         msg['To'] = 'linhanqiu1123@163.com'
         content = await self.read_f()
         #格式化成字符串
@@ -89,28 +93,28 @@ class YD(Msg):
         txt = email.mime.text.MIMEText(content)
         msg.attach(txt)
         return msg
-    # async def load_data1(self):
-    #     msg['Subject'] = '每日数据情况'
-    #     msg['From'] = 'DailyStatus<workinform@163.com>'
-    #     msg['To'] = 'linhanqiu1123@163.com'
-    #     content = await self.read_f()
-    #     x = [i[0] for i in content]
-    #     y = [i[1] for i in content]
-    #     n = len(x)
-    #     index = np.arange(n)
-    #     width = 0.5
-    #     plt.bar(index, y, width)
-    #     plt.xlabel("类型")
-    #     plt.ylabel("数量")
-    #     plt.xticks(index + width, x)
-    #     timea = time.strftime("%Y-%m-%d", time.localtime())
-    #     plt.savefig(str(timea) + "娱道.jpg")
-    #     #提取图片，发送图片
-    #     fp = open('2017-11-10娱道.jpg', 'rb')
-    #     img = MIMEImage(fp.read())
-    #     img.add_header('Content-ID', 'digglife')
-    #     msg.attach(img)
-    #     return msg
+    async def load_data1(self):
+        msg['Subject'] = '每日数据情况'
+        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['To'] = 'linhanqiu1123@163.com'
+        content = await self.read_f()
+        x = [i[0] for i in content]
+        y = [i[1] for i in content]
+        n = len(x)
+        index = np.arange(n)
+        width = 0.5
+        plt.bar(index, y, width)
+        plt.xlabel("类型")
+        plt.ylabel("数量")
+        plt.xticks(index + width, x)
+        timea = time.strftime("%Y-%m-%d", time.localtime())
+        plt.savefig(str(timea) + "娱道.jpg")
+        #提取图片，发送图片
+        fp = open('2017-11-10娱道.jpg', 'rb')
+        img = MIMEImage(fp.read())
+        img.add_header('Content-ID', 'digglife')
+        msg.attach(img)
+        return msg
 
 
 #商道邮件
@@ -128,7 +132,7 @@ class SD(Msg):
     #生成格式化text
     async def load_data(self):
         msg['Subject'] = str(today)+'-----商道数据情况'
-        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['From'] = 'DailyStatus<datawork-msconvey@outlook.com>'
         msg['To'] = 'linhanqiu1123@163.com'
         content = await self.read_f()
         #格式化成字符串
@@ -137,7 +141,7 @@ class SD(Msg):
         content = ["来源："+(str(i[0])+"\n数量:"+str(i[1])+"\n") for i in content]
         content = ''.join(content)
         print(content)
-        txt = email.mime.text.MIMEText(content)
+        txt = email.mime.text.MIMEText(content,'plain','utf-8')
         msg.attach(txt)
         return msg
 
@@ -159,7 +163,7 @@ class India(Msg):
     # 生成格式化text
     async def load_data(self):
         msg['Subject'] = str(today) + '-----新德里数据情况'
-        msg['From'] = 'DailyStatus<workinform@163.com>'
+        msg['From'] = 'DailyStatus<datawork-msconvey@outlook.com>'
         msg['To'] = 'linhanqiu1123@163.com'
         content = await self.read_f()
         # 格式化成字符串
@@ -194,13 +198,15 @@ class Mail:
         self.cl = Cfg.l_cfg
         self.cm = Cfg.m_cfg
     def load_server(self):
-        smtp = smtplib.SMTP()
-        smtp.connect(self.cs["server"],self.cs["port"])
+        smtp = smtplib.SMTP(self.cs["server"],self.cs["port"])
+        smtp.ehlo("helo")
+        smtp.starttls()
         smtp.login(self.cl["username"],self.cl["password"])
         return smtp
     async def send_mail(self):
-        msg = await self.m.load_data()
+        msg = await self.m.load_data1()
         smtp = self.load_server()
+        # smtp.set_debuglevel(1)
         smtp.sendmail(self.cm["sender"],self.cm["receiver"],msg.as_string())
         smtp.quit()
         print("发送成功")
@@ -213,5 +219,13 @@ if __name__=="__main__":
         loop = asyncio.set_event_loop_policy(uvloop.EventLoopPolicy)
     except:
         loop = asyncio.get_event_loop()
-    loop.run_until_complete(Mail(4).send_mail())
+
+    import sys
+    #获取类型参数
+    # type = sys.argv[1]
+    try:
+        # loop.run_until_complete(Mail(int(type)).send_mail())
+        loop.run_until_complete(Mail(2).send_mail())
+    except TypeError as e:
+        print("参数类型错误",e)
     loop.close()
