@@ -16,12 +16,19 @@ id_simple_format = '[%(levelname)s][%(asctime)s] %(message)s'
 
 # 定义日志输出格式 结束
 
+pwd = os.getcwd()
+grader_father = os.path.abspath(os.path.dirname(pwd)+os.path.sep+".")  # 根目录
+
 logfile_dir = os.path.dirname(os.path.abspath(__file__))  # log文件的父目录
-logfile_log_dir = logfile_dir+"/log"
+logfile_log_dir = grader_father+"/log"
+
+# print(logfile_log_dir)
 
 logfile_name0 = 'crawler_status.log'  # log文件名
 logfile_name1 = 'data_filter.log'  # log1文件名
-logfile_name2 = 'upload_status.log'  # log1文件名
+logfile_name2 = 'upload_status.log'  # log2文件名
+logfile_name_error = 'error.log'  # log_error文件名
+logfile_name_count = 'count.log'  # log_count文件名
 
 # 如果不存在定义的日志目录就创建一个
 if not os.path.isdir(logfile_log_dir):
@@ -31,6 +38,8 @@ if not os.path.isdir(logfile_log_dir):
 logfile_path0 = os.path.join(logfile_log_dir, logfile_name0)
 logfile_path1 = os.path.join(logfile_log_dir, logfile_name1)
 logfile_path2 = os.path.join(logfile_log_dir, logfile_name2)
+logfile_path_error = os.path.join(logfile_log_dir, logfile_name_error)
+logfile_path_count = os.path.join(logfile_log_dir, logfile_name_count)
 
 # log配置字典
 LOGGING_DIC = {
@@ -80,6 +89,24 @@ LOGGING_DIC = {
             'backupCount': 5,
             'encoding': 'utf-8',  # 日志文件的编码，再也不用担心中文log乱码了
         },
+        'default3': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',  # 保存到文件
+            'formatter': 'standard',
+            'filename': logfile_path_error,  # 日志文件
+            'maxBytes': 1024 * 1024 * 5,  # 日志大小 5M
+            'backupCount': 5,
+            'encoding': 'utf-8',  # 日志文件的编码，再也不用担心中文log乱码了
+        },
+        'default4': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',  # 保存到文件
+            'formatter': 'standard',
+            'filename': logfile_path_count,  # 日志文件
+            'maxBytes': 1024 * 1024 * 5,  # 日志大小 5M
+            'backupCount': 5,
+            'encoding': 'utf-8',  # 日志文件的编码，再也不用担心中文log乱码了
+        },
     },
     'loggers': {
         #logging.getLogger(__name__)拿到的logger配置
@@ -95,6 +122,16 @@ LOGGING_DIC = {
         },
         'upload_status': {
             'handlers': ['default2', 'console'],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
+            'level': 'DEBUG',
+            'propagate': True,  # 向上（更高level的logger）传递
+        },
+        'error_collect': {
+            'handlers': ['default3', 'console'],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
+            'level': 'DEBUG',
+            'propagate': True,  # 向上（更高level的logger）传递
+        },
+        'item_count': {
+            'handlers': ['default4', 'console'],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
             'level': 'DEBUG',
             'propagate': True,  # 向上（更高level的logger）传递
         },
