@@ -8,18 +8,18 @@ from pscc import QS, XS,Item, Parser, XPathParser, Spider
 
 
 class Post(Item):
-    title = QS('.title-content')
+    title = XS('//h1[@id="articleTitle"]')
 
     async def save(self):
-        print(self.title)
-
+        print(self.results)
+        # pass
 
 class MySpider(Spider):
-    start_url = 'https://www.baidu.com/index.php?tn=monline_3_dg'
+    start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
     concurrency = 5
-    # headers = {'User-Agent': 'Google Spider'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36'}
     parsers = [
-               XPathParser('//span[@class="title-link"]/a/@href')
+               XPathParser('//ul[@class="channel-newsGroup"][1]/li/a/@href',Post)
               ]
 
 

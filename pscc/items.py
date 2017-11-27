@@ -4,8 +4,8 @@
 from pscc.selector import Selector
 from html import unescape
 from utils.logconfig import load_my_logging_cfg
-from utils.logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("")
+
 
 class ItemType(type):
     def __new__(mcs, name, bases, namespace):
@@ -45,6 +45,7 @@ class Item(metaclass=ItemType):
 
     @classmethod
     def count_add(cls, value=1):
+
         cls._item_count += value
 
     def __getattr__(self, item):

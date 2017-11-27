@@ -5,7 +5,7 @@ from urllib.parse import urljoin
 
 import aiohttp
 from lxml import etree
-
+import re
 from pscc.requests import fetch
 from utils.logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("")
@@ -20,6 +20,12 @@ class BaseParser(object):
         self.filter_urls = set()
         self.done_urls = []
 
+    """
+    解析子域名
+    :param http://www.itmain4.com/forum-44-1.html
+    ->"http://itmain4.com"
+    ->"http://www.itmian4.com/thread-2993-1-1.html"
+    """
     def parse_urls(self, html, base_url):
         if html is None:
             return
@@ -27,8 +33,16 @@ class BaseParser(object):
             url = unescape(url)
             if not re.match('(http|https)://', url):
                 url = urljoin(base_url, url)
-            self.add(url)
 
+            """
+            当urljoin 不能解析的时候，例如下面缺少‘jl/’导致的子域名不能访问
+            """
+            if base_url=="http://difang.gmw.cn/":
+                base_url = 'http://difang.gmw.cn/jl/'
+                url = re.sub(r"cn/",r"cn/jl/",url)
+                url = urljoin(base_url, url)
+            self.add(url)
+            print(url)
     def abstract_urls(self, html):
         raise NotImplementedError
 

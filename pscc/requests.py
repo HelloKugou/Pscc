@@ -13,7 +13,6 @@ logger = load_my_logging_cfg("")
 
 
 async def fetch(url, spider, session, semaphore):
-
     with (await semaphore):
         try:
             if callable(spider.headers):

@@ -46,7 +46,9 @@ class Spider:
         logger.info('Spider started!')
         start_time = datetime.now()
         loop = asyncio.get_event_loop()
-
+        """
+        获取基域名
+        """
         if cls.base_url is None:
             cls.base_url = re.match('(http|https)://[\w\-_]+(\.[\w\-_]+)+/', cls.start_url).group()
             logger.info('Base url: {}'.format(cls.base_url))
