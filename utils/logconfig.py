@@ -147,5 +147,5 @@ if __name__ == '__main__':
     """
     生成目录
     """
-    logger = load_my_logging_cfg("lin")#不存在的key值来产生log文件
+    logger = load_my_logging_cfg("")#不存在的key值来产生log文件
     logger.info("lin")

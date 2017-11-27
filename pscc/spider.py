@@ -7,7 +7,7 @@ from pscc.requests import fetch
 
 from utils.logconfig import load_my_logging_cfg
 
-logger = load_my_logging_cfg("")
+logger = load_my_logging_cfg("crawler_status")
 
 try:
     import uvloop

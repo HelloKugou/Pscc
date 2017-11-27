@@ -5,7 +5,8 @@
 from .items import Item
 
 #数据日志记录模块
-
+from utils.logconfig import load_my_logging_cfg
+Logger = load_my_logging_cfg("")
 
 #数据解析模块
 from .parser import (Parser, BaseParser, XPathParser)
@@ -17,4 +18,4 @@ from .selector import Selector,RS,QS,XS
 from .spider import Spider
 
 #限制import
-__all__ = ("Item","Parser","RS","QS","XS","Spider")
+__all__ = ("Item","Parser","RS","QS","XS","Spider","Logger","XPathParser")

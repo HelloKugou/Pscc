@@ -8,6 +8,7 @@ from lxml import etree
 
 from pscc.requests import fetch
 from utils.logconfig import load_my_logging_cfg
+logger = load_my_logging_cfg("")
 
 
 class BaseParser(object):

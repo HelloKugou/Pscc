@@ -23,7 +23,7 @@ class Selector:
 
         return "{}({})".format(self.__class__.__name__,self.rule)
 
-    def parse(self,html):
+    def parse_detail(self,html):
 
         print("您还未指定具体的选择器,无法帮您解析")
         raise NotImplementedError
@@ -38,7 +38,7 @@ class Selector:
 
 
 class QS(Selector):
-    def parse(self,html):
+    def parse_detail(self,html):
         pq_content = pq(html)
         if self.attr is None:
             try:
@@ -53,7 +53,7 @@ class QS(Selector):
 :return str
 """
 class XS(Selector):
-    def parse(self,html):
+    def parse_detail(self,html):
         xp_content = etree.HTML(html)
         try:
             if self.attr is None:

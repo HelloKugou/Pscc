@@ -1,0 +1,6 @@
+[2017-11-27 18:09:03,590][MainThread:140088465999616][task_id:crawler_status][spider.py:47][INFO][Spider started!]
+[2017-11-27 18:09:03,591][MainThread:140088465999616][task_id:crawler_status][spider.py:53][INFO][Base url: https://www.baidu.com/]
+[2017-11-27 18:09:03,639][MainThread:140088465999616][task_id:crawler_status][spider.py:68][INFO][Requests count: 0]
+[2017-11-27 18:09:03,639][MainThread:140088465999616][task_id:crawler_status][spider.py:69][INFO][Error count: 0]
+[2017-11-27 18:09:03,639][MainThread:140088465999616][task_id:crawler_status][spider.py:70][INFO][Time usage: 0:00:00.048869]
+[2017-11-27 18:09:03,639][MainThread:140088465999616][task_id:crawler_status][spider.py:71][INFO][Spider finished!]
