@@ -3,9 +3,11 @@ import re
 from datetime import datetime
 
 import aiohttp
-from pscc.request import fetch
+from pscc.requests import fetch
 
-from .log import logger
+from utils.logconfig import load_my_logging_cfg
+
+logger = load_my_logging_cfg("")
 
 try:
     import uvloop
@@ -72,4 +74,4 @@ class Spider:
     async def init_parse(cls, semaphore):
         with aiohttp.ClientSession() as session:
             html = await fetch(cls.start_url, cls, session, semaphore)
-cls.parse(html)
+            cls.parse(html)

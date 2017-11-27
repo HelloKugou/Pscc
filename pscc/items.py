@@ -4,6 +4,8 @@
 from pscc.selector import Selector
 from html import unescape
 from utils.logconfig import load_my_logging_cfg
+from utils.logconfig import load_my_logging_cfg
+logger = load_my_logging_cfg("")
 
 class ItemType(type):
     def __new__(mcs, name, bases, namespace):
@@ -54,4 +56,4 @@ class Item(metaclass=ItemType):
         if hasattr(self, '__result__'):
             await self.__result__.save(self.results)
         else:
-raise NotImplementedError
+            raise NotImplementedError

@@ -14,19 +14,29 @@ class Selector:
     def __init__(self,rule,attr=None):
         self.rule = rule
         self.attr = attr
+
     def __str__(self):
+
         return "{}({})".format(self.__class__.__name__,self.rule)
+
     def __repr__(self):
+
         return "{}({})".format(self.__class__.__name__,self.rule)
+
     def parse(self,html):
+
         print("您还未指定具体的选择器,无法帮您解析")
         raise NotImplementedError
 
+
 #使用pyquery解析
+
 """
 :param html_code  attr? 类似href src
 :return str
 """
+
+
 class QS(Selector):
     def parse(self,html):
         pq_content = pq(html)

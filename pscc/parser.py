@@ -85,6 +85,4 @@ class XPathParser(BaseParser):
     def abstract_urls(self, html):
         doc = etree.HTML(html)
         urls = doc.xpath(self.rule)
-
-
-return urls
+        return urls

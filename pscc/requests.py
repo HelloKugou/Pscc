@@ -4,11 +4,16 @@
 import asyncio
 try:
     import uvloop
-    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy)
+    asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 except:
     pass
 
+from utils.logconfig import load_my_logging_cfg
+logger = load_my_logging_cfg("")
+
+
 async def fetch(url, spider, session, semaphore):
+
     with (await semaphore):
         try:
             if callable(spider.headers):
