@@ -5,7 +5,7 @@
 from .items import Item
 
 #数据日志记录模块
-from utils.logconfig import load_my_logging_cfg
+from utils.Logconfig import load_my_logging_cfg
 Logger = load_my_logging_cfg("")
 
 #数据解析模块

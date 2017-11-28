@@ -109,7 +109,9 @@ LOGGING_DIC = {
         },
     },
     'loggers': {
-        #logging.getLogger(__name__)拿到的logger配置
+
+
+        # logging.getLogger(__name__)拿到的logger配置
         'crawler_status': {
             'handlers': ['default0', 'console'],  # 这里把上面定义的两个handler都加上，即log数据既写入文件又打印到屏幕
             'level': 'DEBUG',

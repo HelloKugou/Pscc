@@ -7,7 +7,7 @@ import aiohttp
 from lxml import etree
 import re
 from pscc.requests import fetch
-from utils.logconfig import load_my_logging_cfg
+from utils.Logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("")
 
 
@@ -42,7 +42,7 @@ class BaseParser(object):
                 url = re.sub(r"cn/",r"cn/jl/",url)
                 url = urljoin(base_url, url)
             self.add(url)
-            print(url)
+
     def abstract_urls(self, html):
         raise NotImplementedError
 

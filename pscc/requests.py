@@ -8,7 +8,7 @@ try:
 except:
     pass
 
-from utils.logconfig import load_my_logging_cfg
+from utils.Logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("")
 
 

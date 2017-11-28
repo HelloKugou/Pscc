@@ -34,12 +34,11 @@ class ELogger:
                 self.logger.info("记录错误方法:{}，错误类型以及参数:{}-{}".format(func.__name__,"参数类型错误",e.args))
         return logger
 
-#error_de_test
-# @Logger("error_collect")
-# def a():
-#     raise IndexError
-#
-#
-# a()
+@ELogger("error_collect")
+def a():
+    raise IndexError
+
+
+a()
 
 

@@ -5,3 +5,4 @@
 [2017-11-23 14:54:41,157][MainThread:140662042232576][task_id:error_collect][logger.py:30][INFO][记录错误方法:a，错误类型:['__cause__', '__class__', '__context__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__setstate__', '__sizeof__', '__str__', '__subclasshook__', '__suppress_context__', '__traceback__', 'args', 'with_traceback']]
 [2017-11-23 14:56:04,696][MainThread:140278550771456][task_id:error_collect][logger.py:30][INFO][记录错误方法:a，错误类型以及参数:-()]
 [2017-11-23 14:57:48,208][MainThread:140299311765248][task_id:error_collect][logger.py:30][INFO][记录错误方法:a，错误类型以及参数:索引错误-()]
+[2017-11-28 17:49:48,843][MainThread:139919076357888][task_id:error_collect][logger.py:32][INFO][记录错误方法:a，错误类型以及参数:索引错误-()]
