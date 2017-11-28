@@ -5,7 +5,7 @@ from datetime import datetime
 import aiohttp
 from pscc.requests import fetch
 
-from utils.logconfig import load_my_logging_cfg
+from utils.Logconfig import load_my_logging_cfg
 
 logger = load_my_logging_cfg("crawler_status")
 

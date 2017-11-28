@@ -5,7 +5,7 @@
 # __purpose__="配置日志装饰器"
 
 from functools import wraps
-from utils.logconfig import load_my_logging_cfg
+from utils.Logconfig import load_my_logging_cfg
 
 """错误日志收集器"""
 
