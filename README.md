@@ -32,7 +32,7 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 - 4.存储部分（多种储存方式，）
 
-# 基本使用(也可以去[test]()目录下查看)
+### 基本使用(也可以去[test](https://github.com/PythonScientists/Pscc/tree/master/test)目录下查看)，当然，为了方便，可以直接在test文件夹下放置爬虫脚本，由start_up.py文件直接启动多个脚本
 
 ```
 #!/usr/bin/env python3
@@ -41,29 +41,33 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 # __datetime__="2017-11-28"
 # __purpose__="基本使用"
 
+"""引入基本包，受__all__限制"""
 from pscc import XS, Item, XPathParser, Spider
 
-
-class Post(Item):
+"""构建子域名处理方法"""
+class Title(Item):
     title = XS('//h1[@id="articleTitle"]')
 
     async def save(self):
         print(self.title)
         # pass
 
-
+"""初始爬虫"""
 class MySpider(Spider):
-
+    #添加初始域名
     start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
+    #重试次数
     concurrency = 5
     headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
                               '(KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')}
+    #解析出子域名，再由Title类解析
     parsers = [
-               XPathParser('//ul[@class="channel-newsGroup"][1]/li/a/@href', Post)
+               XPathParser('//ul[@class="channel-newsGroup"][1]/li/a/@href', Title)
               ]
 
 
 if __name__ == '__main__':
+    #启动
     MySpider.run()
 ```
 
