@@ -25,7 +25,6 @@ async def fetch(url, spider, session, semaphore):
             else:
                 headers = spider.headers
             async with session.get(url, headers=headers, proxy=spider.proxy, timeout=int(rcfg("timeout"))) as response:
-                print(response.status)
                 if response.status in [200, 201]:
                     data = await response.text()
                     return data

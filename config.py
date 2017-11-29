@@ -7,16 +7,19 @@
 from utils.Error import (
                     NoKeyError
                         )
+
+
 class Config:
     def __init__(self):
         pass
 
     """定义request的cfg"""
+
     class RequestCfg:
         request_dict = {
             "proxy": "127.0.0.1",
-            "Rconcurrency":15,
-            "timeout": 10
+            "Rconcurrency": 100,
+            "timeout": 100
         }
 
     """获取request的cfg"""
@@ -32,11 +35,14 @@ class Config:
 class DevConfig(Config):
     pass
 
+
 class ProConfig(Config):
     pass
 
+
+#test
 # a = DevConfig()
 # try:
-#     print(a.request("a"))
+#     print(type(a.request("timeout")))
 # except NoKeyError as e:
 #     print(e)

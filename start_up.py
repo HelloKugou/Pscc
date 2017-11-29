@@ -36,5 +36,5 @@ class Run:
 
 
 if __name__ == "__main__":
+    """更改爬虫脚本目录，启动程序"""
     Run("test").run_cmd()
-

@@ -24,8 +24,8 @@ class Title(Item):
 class MySpider(Spider):
 
     #添加初始域名
-    # start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
-    start_url = 'https://google.com/'
+    start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
+    # start_url = 'https://google.com/'
     #重试次数
     concurrency = 5
     headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '

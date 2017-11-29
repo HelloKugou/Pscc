@@ -47,6 +47,7 @@ class BaseParser(object):
                 url = re.sub(r"cn/",r"cn/jl/",url)
                 url = urljoin(base_url, url)
             self.add(url)
+            print(url)
 
     def abstract_urls(self, html):
         raise NotImplementedError
@@ -85,7 +86,11 @@ class BaseParser(object):
             logger.info('Followed({}/{}): {}'.format(len(self.done_urls), len(self.filter_urls), url))
 
     async def task(self, spider, semaphore):
-        conn = aiohttp.TCPConnector(limit=rcfg("Rconcurrency"), keepalive_timeout=3,use_dns_cache=True)
+        conn = aiohttp.TCPConnector(
+                                    limit=int(rcfg("Rconcurrency")),
+                                    keepalive_timeout=3,
+                                    use_dns_cache=True
+                                    )
         with aiohttp.ClientSession(connector=conn) as session:
             while spider.is_running():
                 if len(self.pre_parse_urls) == 0:
