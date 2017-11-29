@@ -9,6 +9,11 @@ import re
 from pscc.requests import fetch
 from utils.Logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("")
+from config import DevConfig
+
+
+"""实例化配置"""
+rcfg = DevConfig().request
 
 
 class BaseParser(object):
@@ -80,7 +85,8 @@ class BaseParser(object):
             logger.info('Followed({}/{}): {}'.format(len(self.done_urls), len(self.filter_urls), url))
 
     async def task(self, spider, semaphore):
-        with aiohttp.ClientSession() as session:
+        conn = aiohttp.TCPConnector(limit=rcfg("Rconcurrency"), keepalive_timeout=3,use_dns_cache=True)
+        with aiohttp.ClientSession(connector=conn) as session:
             while spider.is_running():
                 if len(self.pre_parse_urls) == 0:
                     await asyncio.sleep(0.5)

@@ -10,7 +10,11 @@ except:
 
 from utils.Logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("")
+from config import DevConfig
 
+
+"""实例化配置"""
+rcfg = DevConfig().request
 
 async def fetch(url, spider, session, semaphore):
     with (await semaphore):
@@ -20,7 +24,8 @@ async def fetch(url, spider, session, semaphore):
                 headers = spider.headers()
             else:
                 headers = spider.headers
-            async with session.get(url, headers=headers, proxy=spider.proxy) as response:
+            async with session.get(url, headers=headers, proxy=spider.proxy, timeout=int(rcfg("timeout"))) as response:
+                print(response.status)
                 if response.status in [200, 201]:
                     data = await response.text()
                     return data

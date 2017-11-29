@@ -6,7 +6,7 @@ import aiohttp
 from pscc.requests import fetch
 
 from utils.Logconfig import load_my_logging_cfg
-
+# from config import DevConfig
 logger = load_my_logging_cfg("crawler_status")
 
 try:
