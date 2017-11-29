@@ -10,7 +10,7 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 经过一周的努力，终于在空闲时间完成了这个爬虫的框架，目前阶段还是在测试框架的稳定性，测试好了之后会放上来
 
-# 终极目标
+# 一 . 终极目标
 
 ### 必须快 - `python3的地基`
 
@@ -18,11 +18,11 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 ### 可定制化 - `一个让人满意的框架的最终目的`
 
-# 构想架构
+# 二 . 构想架构
 
 `主模块-存储模块-中间件管理模块-调度模块-请求模块`
 
-# 已开发功能
+# 三 . 已开发功能
 
 - 1.请求部分（异步请求， 请求码规则过滤）
  
@@ -32,7 +32,9 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 - 4.存储部分（多种储存方式，）
 
-### 基本使用(也可以去[**test**](https://github.com/PythonScientists/Pscc/tree/master/test)目录下查看)，当然，为了方便，可以直接在test文件夹下放置爬虫脚本，由[**start_up.py**](https://github.com/PythonScientists/Pscc/blob/master/start_up.py)文件直接启动多个脚本
+# 四 . 了解框架
+
+### 四-一 . 基本使用(也可以去[**test**](https://github.com/PythonScientists/Pscc/tree/master/test)目录下查看)，当然，为了方便，可以直接在test文件夹下放置爬虫脚本，由[**start_up.py**](https://github.com/PythonScientists/Pscc/blob/master/start_up.py)文件直接启动多个脚本
 
 ```
 #!/usr/bin/env python3
@@ -71,7 +73,9 @@ if __name__ == '__main__':
     MySpider.run()
 ```
 
-#  虽然现在框架已经能够正常运行，但是相比于正常，使用的一般框架来说，还是会有很多不足的地方，希望大家能够多提意见，下面是各个模块的细节问题，将来也会按照下面来进行一些优化
+# 五 . 改进方向
+
+###  虽然现在框架已经能够正常运行，但是相比于正常，使用的一般框架来说，还是会有很多不足的地方，希望大家能够多提意见，下面是各个模块的细节问题，将来也会按照下面来进行一些优化
 
 - 1.**请求模块** （aiohttp框架来发送请求）
 
