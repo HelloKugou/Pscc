@@ -16,6 +16,7 @@ async def fetch(url, spider, session, semaphore):
     with (await semaphore):
         try:
             if callable(spider.headers):
+
                 headers = spider.headers()
             else:
                 headers = spider.headers
