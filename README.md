@@ -49,20 +49,6 @@ from pscc import XS, Item, XPathParser, Spider
 """构建子域名处理方法"""
 class Title(Item):
     title = XS('//h1[@id="articleTitle"]')
-
-    async def save(self):
-        print(self.title)
-        # pass
-
-"""初始爬虫"""
-class MySpider(Spider):
-    #添加初始域名
-    start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
-    #重试次数
-    concurrency = 5
-    headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
-                              '(KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')}
-    #解析出子域名，再由Title类解析
     parsers = [
                XPathParser('//ul[@class="channel-newsGroup"][1]/li/a/@href', Title)
               ]
@@ -81,9 +67,12 @@ if __name__ == '__main__':
 
     - 1.细节一 代理问题
   
+  
     - 2.细节二 消息头设置问题
     
+    
     - 3.细节三 请求频率、请求间隔
+   
    
     - 4.细节四 返回html的编码问题
 
@@ -91,17 +80,22 @@ if __name__ == '__main__':
 
     - 1.细节一 解析深度设置
   
+  
     - 2.细节二 url管理
+    
     
     - 3.细节三 子域名拼接问题
   
+  
     - 4.细节四 解析方式
 
 - 3.**数据定义模块**（）
 
     - 1.细节一 数据统计实现
+    
   
     - 2.细节二 数据存储方式定义
+    
  
 - 4.**选择器模块** (目前支持三种选择器)
 
@@ -120,6 +114,7 @@ if __name__ == '__main__':
 - 7.**存储模块** （）
 
     - 1.细节一 存储方式选择
+    
  
     - 2.细节二 存储方式标准化
 
@@ -127,24 +122,28 @@ if __name__ == '__main__':
 - 8.**日志管理模块** ()
 
     - 1.细节一 何时使用日志
+    
  
     - 2.细节二 日志标准格式定义
     
 - 9.**工具模块** ()
 
     - 1.细节一 使用现有轮子
+    
  
     - 2.细节二 增加框架可用性
     
 - 10.**插件模块** （）
 
     - 1.细节一 python实现插件系统
+    
  
     - 2.细节二 强调拓展性，根据使用者的需要自动更改系统（热更新）
 
 #  需要改进的点
 
 - 1.不支持对https的协议
+
 
 - 2.功能单一，不支持大规模爬取
 
