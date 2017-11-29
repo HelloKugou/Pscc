@@ -32,6 +32,41 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 - 4.存储部分（多种储存方式，）
 
+# 基本使用(也可以去[test]()目录下查看)
+
+```
+#!/usr/bin/env python3
+#-*-coding:utf-8-*-
+# __all__=""
+# __datetime__="2017-11-28"
+# __purpose__="基本使用"
+
+from pscc import XS, Item, XPathParser, Spider
+
+
+class Post(Item):
+    title = XS('//h1[@id="articleTitle"]')
+
+    async def save(self):
+        print(self.title)
+        # pass
+
+
+class MySpider(Spider):
+
+    start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
+    concurrency = 5
+    headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                              '(KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')}
+    parsers = [
+               XPathParser('//ul[@class="channel-newsGroup"][1]/li/a/@href', Post)
+              ]
+
+
+if __name__ == '__main__':
+    MySpider.run()
+```
+
 #  虽然现在框架已经能够正常运行，但是相比于正常，使用的一般框架来说，还是会有很多不足的地方，希望大家能够多提意见，下面是各个模块的细节问题，将来也会按照下面来进行一些优化
 
 - 1.**请求模块** （aiohttp框架来发送请求）
