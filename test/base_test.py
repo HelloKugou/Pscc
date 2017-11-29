@@ -18,24 +18,25 @@ class Title(Item):
         print(self.title)
         # pass
 
+
 """初始爬虫"""
 
 
 class MySpider(Spider):
 
-    #添加初始域名
+    # 添加初始域名
     start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
     # start_url = 'https://google.com/'
-    #重试次数
+    # 重试次数
     concurrency = 5
     headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
                               '(KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')}
-    #解析出子域名，再由Title类解析
+    # 解析出子域名，再由Title类解析
     parsers = [
                XPathParser('//ul[@class="channel-newsGroup"][1]/li/a/@href', Title)
               ]
 
 
 if __name__ == '__main__':
-    #启动
+    # 启动
     MySpider.run()
