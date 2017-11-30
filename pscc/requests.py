@@ -14,8 +14,8 @@ from config import DevConfig
 
 
 """实例化配置"""
-rcfg = DevConfig().request
-
+reqcfg = DevConfig().request
+rescfg = DevConfig().response
 
 async def fetch(url, spider, session, semaphore):
     with (await semaphore):
@@ -25,15 +25,14 @@ async def fetch(url, spider, session, semaphore):
                 headers = spider.headers()
             else:
                 headers = spider.headers
-            async with session.get(url, headers=headers, proxy=spider.proxy(), timeout=int(rcfg("timeout"))) as response:
-                if response.status in [200, 201]:
-                    # 网页编码问题
+            async with session.get(url, headers=headers, proxy=spider.proxy(), timeout=int(reqcfg("timeout"))) as response:
+                if rescfg(response.status)[0]:
                     try:
                         data = await response.text()
                     except:
                         data = await response.text(encoding="gbk")
                     return data
-                logger.error('Error: {} {}'.format(url, response.status))
+                logger.error('Error: {} {} {}'.format(url, response.status,rescfg(response.status)[1]))
                 return None
         except:
             pass

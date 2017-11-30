@@ -31,6 +31,30 @@ class Config:
         else:
             raise NoKeyError(cfg)
 
+    """定义网页响应"""
+
+    class ResponseCfg:
+        response_dict = {
+            # 2 类
+            200: (True, "",),
+            201: (True, "",),
+            # 3 类
+            # 4 类
+            403: (False, "",),
+            404: (False, "",),
+        }
+
+    """获取网页响应的cfg"""
+
+    def response(self, cfg):
+        response_dict = self.ResponseCfg().response_dict
+        if response_dict.get(cfg):
+            value = response_dict.get(cfg)
+            return value
+        else:
+            raise NoKeyError(cfg)
+
+    """定义网页编码"""
 
 class DevConfig(Config):
     pass
@@ -40,9 +64,9 @@ class ProConfig(Config):
     pass
 
 
-#test
+# 测试获取cfg
 # a = DevConfig()
 # try:
-#     print(type(a.request("timeout")))
+#     print(type(a.response(200)))
 # except NoKeyError as e:
 #     print(e)

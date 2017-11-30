@@ -24,7 +24,7 @@ class Title(Item):
 
 class MySpider(Spider):
     # 不启用代理
-    proxyable = True
+    proxyable = False
     # 添加初始域名
     start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
     # start_url = 'https://google.com/'
