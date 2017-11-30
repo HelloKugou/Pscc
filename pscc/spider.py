@@ -29,10 +29,13 @@ class Spider:
     proxyable = None
     proxy_url = None
 
-    if not proxyable:
-        proxy_url = None
-    else:
-        proxy_url = "http://223.25.247.9:3128"
+    @classmethod
+    def proxy(cls):
+        if cls.proxyable:
+            cls.proxy_url = 1
+        else:
+            pass
+        return cls.proxy_url
 
     @classmethod
     def is_running(cls):
@@ -83,3 +86,8 @@ class Spider:
         with aiohttp.ClientSession() as session:
             html = await fetch(cls.start_url, cls, session, semaphore)
             cls.parse(html)
+
+
+if __name__=="__main__":
+    class T(Spider):
+        proxyable = None
