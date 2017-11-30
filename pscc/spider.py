@@ -26,7 +26,13 @@ class Spider:
     concurrency = 5
     interval = None #Todo: Limit the interval between two requests
     headers = {}
-    proxy = None
+    proxyable = None
+    proxy_url = None
+
+    if not proxyable:
+        proxy_url = None
+    else:
+        proxy_url = "http://223.25.247.9:3128"
 
     @classmethod
     def is_running(cls):

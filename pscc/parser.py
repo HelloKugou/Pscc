@@ -4,6 +4,7 @@ from html import unescape
 from urllib.parse import urljoin
 
 import aiohttp
+from aiohttp import AsyncResolver
 from lxml import etree
 import re
 from pscc.requests import fetch
@@ -86,10 +87,12 @@ class BaseParser(object):
             logger.info('Followed({}/{}): {}'.format(len(self.done_urls), len(self.filter_urls), url))
 
     async def task(self, spider, semaphore):
+        resolver = AsyncResolver(nameservers=["8.8.8.8", "8.8.4.4"])
         conn = aiohttp.TCPConnector(
                                     limit=int(rcfg("Rconcurrency")),
                                     keepalive_timeout=3,
-                                    use_dns_cache=True
+                                    use_dns_cache=True,
+                                    resolver=resolver
                                     )
         with aiohttp.ClientSession(connector=conn) as session:
             while spider.is_running():

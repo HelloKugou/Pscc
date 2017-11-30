@@ -25,7 +25,7 @@ async def fetch(url, spider, session, semaphore):
                 headers = spider.headers()
             else:
                 headers = spider.headers
-            async with session.get(url, headers=headers, proxy=spider.proxy, timeout=int(rcfg("timeout"))) as response:
+            async with session.get(url, headers=headers, proxy=spider.proxy_url, timeout=int(rcfg("timeout"))) as response:
                 if response.status in [200, 201]:
                     # 网页编码问题
                     try:
