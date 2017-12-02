@@ -60,7 +60,10 @@ if __name__ == '__main__':
 ```
 #### 具体可以看下列图示
 
+
 ![启动图示](https://github.com/PythonScientists/Pscc/blob/master/help/start_up.png)
+
+
 ![错误启动图示](https://github.com/PythonScientists/Pscc/blob/master/help/start_up_error.png)
 
 
@@ -166,4 +169,4 @@ if __name__ == '__main__':
 
 # 继续开发模块中。。。
 
-2017.12.02 改进启动模块，具体可看上面的[启动图示](#### 具体可以看下列图示)
+2017.12.02 改进启动模块，具体可看上面的[启动图示](####具体可以看下列图示)
