@@ -4,13 +4,18 @@
 # __datetime__=""
 # __purpose__=""
 
+"""顶层包引入"""
+import sys
+sys.path.append("/root/Downloads/Pscc")
+
+"""引入基本包，受__all__限制"""
 from pscc import QS, Item, XS
+
 
 # def test_item_define():
 def item_define():
     class User(Item):
         username = QS(".username")
-
 
     assert "username" in User.selectors
     assert isinstance(User.selectors["username"],QS)

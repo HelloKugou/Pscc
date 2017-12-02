@@ -6,10 +6,10 @@
 
 import os
 import subprocess
-
+import click
 
 class Run:
-
+    """封装启动方法"""
     def __init__(self, dirname):
         self.dir = dirname
 
@@ -35,6 +35,56 @@ class Run:
             self.cmd(i)
 
 
+@click.command()
+@click.option("--d",default="test",help="指定爬虫脚本集")
+def start_up(d):
+    # 获取根目录下所有目录
+    pwd = os.getcwd()
+    root_dir = []
+    for _, dirs, _ in os.walk(pwd):
+        root_dir = dirs
+        break
+
+    # 查看输入项是否包含在其中
+    if d in set(root_dir):
+        """可选目录命令行启动方式"""
+        click.secho(
+            "----开始执行----\n"
+            "--目录{}脚本--\n".format(d),
+            bg="green",
+            underline=True
+        )
+        Run(d).run_cmd()
+        click.secho(
+            "----执行结束----",
+            bg="green",
+            underline=True
+        )
+    else:
+        req = input("是否创建'{}'目录:".format(d))
+        if req not in ["y","n"]:
+            click.secho(
+                "您输入选项非法，请重新输入",
+                bg="green",
+                underline=True
+            )
+        elif req == "n":
+            click.secho(
+                "不执行任何操作，退出",
+                bg="green",
+                underline=True
+            )
+        elif req == "y":
+            try:
+                os.mkdir(d)
+                click.secho(
+                    "以创建'{}'目录，请放置爬虫脚本".format(d),
+                    bg="green",
+                    underline=True
+                )
+            except Exception as e:
+                pass
+
 if __name__ == "__main__":
     """更改爬虫脚本目录，启动程序"""
-    Run("test").run_cmd()
+    start_up()

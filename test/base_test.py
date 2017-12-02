@@ -4,6 +4,10 @@
 # __datetime__="2017-11-28"
 # __purpose__="基本使用"
 
+"""顶层包引入"""
+import sys
+sys.path.append("/root/Downloads/Pscc")
+
 """引入基本包，受__all__限制"""
 from pscc import (XS, Item, XPathParser, Spider)
 
