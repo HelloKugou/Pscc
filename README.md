@@ -34,6 +34,8 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 # 四 . 了解框架
 
+
+
 ### 四-一 . 基本使用(也可以去[**test**](https://github.com/PythonScientists/Pscc/tree/master/test)目录下查看)，当然，为了方便，可以直接在test文件夹下放置爬虫脚本，由[**start_up.py**](https://github.com/PythonScientists/Pscc/blob/master/start_up.py)文件直接启动多个脚本
 
 ```
@@ -58,11 +60,18 @@ if __name__ == '__main__':
     #启动
     MySpider.run()
 ```
+#### 具体可以看下列图示
+
+
+![启动图示](https://github.com/PythonScientists/Pscc/blob/master/help/start_up.png)
+
+
+![错误启动图示](https://github.com/PythonScientists/Pscc/blob/master/help/start_up_error.png)
+
 
 ### 四-二  . 安装依赖
 
-根据`Kenneth Reitz`的《Pyhon最佳实践》中构建虚拟环境的方式，初次尝试使用`Pipenv`这个工具来构建，进一步拓展还在探索中，这个库是基于`Virtualevn`库之上的，因此也是更佳简单使用
-
+根据`Kenneth Reitz`的《Pyhon最佳实践》中构建虚拟环境的方式，初次尝试使用`Pipenv`这个工具来构建，进一步拓展还在探索中，这个库是基于`Virtualevn`库之上的，因此也是更佳简单使用,使用的时候直接在根目录下使用`pipenv install`即可，`pipenv`会自动寻找`pipfile`对里面的依赖进行下载
 
 # 五 . 改进方向
 
@@ -160,3 +169,5 @@ if __name__ == '__main__':
 
 
 # 继续开发模块中。。。
+
+2017.12.02 改进启动模块，具体可看上面的[启动图示](####具体可以看下列图示)
