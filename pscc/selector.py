@@ -10,6 +10,7 @@ import re
 from lxml import etree
 from pyquery import PyQuery as pq
 
+
 class Selector:
     def __init__(self,rule,attr=None):
         self.rule = rule

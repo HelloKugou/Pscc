@@ -9,7 +9,8 @@ from lxml import etree
 import re
 from pscc.requests import fetch
 from utils.Logconfig import load_my_logging_cfg
-logger = load_my_logging_cfg("")
+from utils.bloom_filter import BFS
+logger = load_my_logging_cfg("crawler_status")
 from config import DevConfig
 
 
@@ -23,7 +24,10 @@ class BaseParser(object):
         self.item = item
         self.parsing_urls = []
         self.pre_parse_urls = []
-        self.filter_urls = set()
+        # 初始过滤器使用的是python自带的set数据结构
+        # self.filter_urls = set()
+        # 改用了布隆过滤器的结构
+        self.filter_urls = BFS.bset
         self.done_urls = []
 
     """
@@ -48,14 +52,13 @@ class BaseParser(object):
                 url = re.sub(r"cn/",r"cn/jl/",url)
                 url = urljoin(base_url, url)
             self.add(url)
-            print(url)
 
     def abstract_urls(self, html):
         raise NotImplementedError
 
     def add(self, urls):
         url = '{}'.format(urls)
-        if url not in self.filter_urls:
+        if not BFS.inable(url):
             self.filter_urls.add(url)
             self.pre_parse_urls.append(url)
 

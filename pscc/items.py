@@ -4,7 +4,7 @@
 from pscc.selector import Selector
 from html import unescape
 from utils.Logconfig import load_my_logging_cfg
-logger = load_my_logging_cfg("")
+logger = load_my_logging_cfg("crawler_status")
 
 
 class ItemType(type):

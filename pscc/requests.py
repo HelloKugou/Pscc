@@ -9,7 +9,7 @@ except:
     pass
 
 from utils.Logconfig import load_my_logging_cfg
-logger = load_my_logging_cfg("")
+logger = load_my_logging_cfg("crawler_status")
 from config import DevConfig
 
 
