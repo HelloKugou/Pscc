@@ -8,7 +8,7 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 #大家都有什么建议，以及想要批评我的地方都快向我砸过来，提提issues,
 #如果大家感觉我的这个爬虫想法还挺好，那就赶快来！
 
-完整的功能是master的分支，想要看最新的改动切换到develop分支就好。
+完整的功能是[master](https://github.com/PythonScientists/Pscc/tree/master)的分支，想要看最新的改动切换到[develop](https://github.com/PythonScientists/Pscc/tree/develop)分支就好。
 
 # 一 . 终极目标
 
