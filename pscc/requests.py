@@ -5,7 +5,7 @@ import asyncio
 try:
     import uvloop
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-except:
+except ImportError as e:
     pass
 
 from utils.Logconfig import load_my_logging_cfg
@@ -19,6 +19,7 @@ rescfg = DevConfig().response
 
 
 async def fetch(url, retry, spider, session, semaphore):
+    """普通请求方式"""
     with (await semaphore):
         try:
             if callable(spider.headers):
@@ -44,6 +45,7 @@ async def fetch(url, retry, spider, session, semaphore):
 
 
 async def api_requests(url, spider, method, session, semaphore):
+    """api 请求方式"""
     with (await semaphore):
         try:
             if callable(spider.headers):
@@ -51,15 +53,15 @@ async def api_requests(url, spider, method, session, semaphore):
                 headers = spider.headers()
             else:
                 headers = spider.headers
-            if method=="get":
+            if method == "get":
                 async with session.get(url, headers=headers,
-                                   proxy=spider.proxy(),
-                                   timeout=int(reqcfg("timeout")),
-                                   params=spider.params) as response:
+                                       proxy=spider.proxy(),
+                                       timeout=int(reqcfg("timeout")),
+                                       params=spider.params) as response:
                     if rescfg(response.status)[0]:
                         try:
                             data = await response.text()
-                        except:
+                        except UnicodeEncodeError as e:
                             data = await response.text(encoding="gbk")
                         return data
                     logger.error('Requests Errors: {} {}  {}'.format(url, response.status, rescfg(response.status)[1]))

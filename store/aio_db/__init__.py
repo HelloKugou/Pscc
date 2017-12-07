@@ -7,7 +7,7 @@ import asyncio
 try:
     import uvloop
     loop = asyncio.set_event_loop_policy(uvloop.EventLoopPolicy)
-except:
+except ImportError as e:
     loop = asyncio.get_event_loop()
 
 conn_dt = {"host":"192.168.0.202",
@@ -18,6 +18,7 @@ conn_dt = {"host":"192.168.0.202",
 import time
 date = time.strftime("%Y-%m-%d",time.localtime())
 import pandas as pd
+
 
 async def conn():
     pool = await aiomysql.create_pool(host=conn_dt.get("host"),
