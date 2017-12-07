@@ -26,14 +26,14 @@ class MySpider(Spider):
     proxyable = False
     # 添加初始域名
     start_url = 'http://httpbin.org/get'
+    # start_url = 'https://api.github.com/events'
     # start_url = 'https://google.com/'
-    # 重试次数
-    concurrency = 5
+    # 启用api爬取
+    api = True
     headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
                               '(KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')}
     # 解析出子域名，再由Title类解析
-    parsers = [
-              ]
+
 
 
 if __name__ == '__main__':

@@ -71,7 +71,7 @@ class BaseParser(object):
     async def execute_url(self, url, retry, spider, session, semaphore):
         html = await fetch(url, retry, spider, session, semaphore)
         if html is None:
-            if retry > 1:
+            if retry >= 1:
                 spider.error_urls.append(url)
                 self.pre_parse_urls.append((url, retry-1))
             return None

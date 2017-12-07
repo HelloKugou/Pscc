@@ -4,6 +4,7 @@ from datetime import datetime
 
 import aiohttp
 from pscc.requests import fetch
+from pscc.requests import api_requests
 
 from utils.Logconfig import load_my_logging_cfg
 # from config import DevConfig
@@ -11,9 +12,8 @@ logger = load_my_logging_cfg("crawler_status")
 
 try:
     import uvloop
-
     asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
-except ImportError:
+except ImportError as e:
     pass
 
 
@@ -30,7 +30,7 @@ class Spider:
     proxyable = None
     proxy_url = None
     api = False
-    api_method = ""
+    api_method = None
     retry = 3
 
     @classmethod
@@ -85,6 +85,12 @@ class Spider:
                 logger.info('Time usage: {}'.format(end_time - start_time))
                 logger.info('Spider finished!')
                 loop.close()
+        else:
+            try:
+                semaphore = asyncio.Semaphore(cls.concurrency)
+                loop.run_until_complete(cls.init_api_parse(semaphore))
+            except:
+                loop.run_forever()
 
     @classmethod
     async def init_parse(cls, semaphore):
@@ -92,7 +98,15 @@ class Spider:
             html = await fetch(cls.start_url, cls.retry, cls, session, semaphore)
             cls.parse(html)
 
+    @classmethod
+    async def init_api_parse(cls, semaphore):
+        with aiohttp.ClientSession() as session:
+            if not cls.api_method:
+                cls.api_method="get"
+                print(cls.api_method)
+                html = await api_requests(cls.start_url, cls, cls.api_method, session, semaphore)
+                print(html)
 
-if __name__=="__main__":
+if __name__ == "__main__":
     class T(Spider):
         proxyable = None
