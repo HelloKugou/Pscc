@@ -9,6 +9,16 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 #如果大家感觉我的这个爬虫想法还挺好，那就赶快来！
 
 ## 终于退出了`pscc`这个爬虫的第一版，版本号(0.1.0)，希望大家能够多多支持，来一起完善这个爬虫框架
+```
+$python setup.py install
+$python
+>>> import pscc
+>>> pscc.
+pscc.BaseParser(           pscc.Mail                  pscc.RS(                   pscc.XPathParser(          pscc.dbsave                pscc.parser                pscc.store                 
+pscc.Item(                 pscc.Parser(               pscc.Selector(             pscc.XS(                   pscc.fsave                 pscc.requests              
+pscc.Logger                pscc.QS(                   pscc.Spider(               pscc.config                pscc.load_my_logging_cfg(  pscc.spider     
+```
+
 目前在自己的服务器上部署了爬虫的ip代理池，有需要的小伙伴来找我把！！！！
 
 完整的功能是[master](https://github.com/PythonScientists/Pscc/tree/master)的分支，想要看最新的改动切换到[develop](https://github.com/PythonScientists/Pscc/tree/develop)分支就好。
