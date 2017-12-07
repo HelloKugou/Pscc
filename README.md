@@ -8,7 +8,7 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 #大家都有什么建议，以及想要批评我的地方都快向我砸过来，提提issues,
 #如果大家感觉我的这个爬虫想法还挺好，那就赶快来！
 
-经过一周的努力，终于在空闲时间完成了这个爬虫的框架，目前阶段还是在测试框架的稳定性，测试好了之后会放上来
+完整的功能是[master](https://github.com/PythonScientists/Pscc/tree/master)的分支，想要看最新的改动切换到[develop](https://github.com/PythonScientists/Pscc/tree/develop)分支就好。
 
 # 一 . 终极目标
 
@@ -171,3 +171,4 @@ if __name__ == '__main__':
 # 继续开发模块中。。。
 
 2017.12.02 改进启动模块，具体可看上面的[启动图示](####具体可以看下列图示)
+2017.12.06 增加错误重试次数的限制
