@@ -1,36 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="04917ed2-b98d-4f27-a8b8-bd29f91574fb" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/setup.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/decorator/__init__.py" afterPath="$PROJECT_DIR$/pscc/decorator/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/decorator/logger.py" afterPath="$PROJECT_DIR$/pscc/decorator/logger.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/decorator/runtime.py" afterPath="$PROJECT_DIR$/pscc/decorator/runtime.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/middle_ware/__init__.py" afterPath="$PROJECT_DIR$/pscc/middle_ware/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/store/__init__.py" afterPath="$PROJECT_DIR$/pscc/store/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/store/aio_db/__init__.py" afterPath="$PROJECT_DIR$/pscc/store/aio_db/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/store/aio_db/control.py" afterPath="$PROJECT_DIR$/pscc/store/aio_db/control.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/store/aio_file/__init__.py" afterPath="$PROJECT_DIR$/pscc/store/aio_file/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/store/aio_file/control.py" afterPath="$PROJECT_DIR$/pscc/store/aio_file/control.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/store/aio_file/test.text" afterPath="$PROJECT_DIR$/pscc/store/aio_file/test.text" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/store/aio_redis/__init__.py" afterPath="$PROJECT_DIR$/pscc/store/aio_redis/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/utils/Error.py" afterPath="$PROJECT_DIR$/pscc/utils/Error.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/utils/Logconfig.py" afterPath="$PROJECT_DIR$/pscc/utils/Logconfig.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/utils/Mail.py" afterPath="$PROJECT_DIR$/pscc/utils/Mail.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/utils/__init__.py" afterPath="$PROJECT_DIR$/pscc/utils/__init__.py" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/utils/bloom_filter.py" afterPath="$PROJECT_DIR$/pscc/utils/bloom_filter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.py" afterPath="$PROJECT_DIR$/config.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/log/crawler_status.log" afterPath="$PROJECT_DIR$/log/crawler_status.log" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pscc/__init__.py" afterPath="$PROJECT_DIR$/pscc/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pscc/items.py" afterPath="$PROJECT_DIR$/pscc/items.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pscc/parser.py" afterPath="$PROJECT_DIR$/pscc/parser.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pscc/requests.py" afterPath="$PROJECT_DIR$/pscc/requests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pscc/spider.py" afterPath="$PROJECT_DIR$/pscc/spider.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/file_test.py" afterPath="$PROJECT_DIR$/test/file_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/mysql_test.py" afterPath="$PROJECT_DIR$/test/mysql_test.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/test.text" afterPath="$PROJECT_DIR$/test/test.text" />
-    </list>
+    <list default="true" id="04917ed2-b98d-4f27-a8b8-bd29f91574fb" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,11 +62,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="setup.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="setup.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/setup.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+            <state relative-caret-position="406">
+              <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -592,13 +573,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="7" lean-forward="false" selection-start-line="8" selection-start-column="7" selection-end-line="8" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/requirement/base_requirements.txt" />
     <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/site-packages/pipenv/cli.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -889,8 +863,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/setup.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="25" column="6" lean-forward="true" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+        <state relative-caret-position="406">
+          <caret line="25" column="6" lean-forward="false" selection-start-line="25" selection-start-column="6" selection-end-line="25" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="8" lean-forward="false" selection-start-line="8" selection-start-column="8" selection-end-line="8" selection-end-column="8" />
           <folding />
         </state>
       </provider>
