@@ -30,7 +30,7 @@ class Selector:
         raise NotImplementedError
 
 
-#使用pyquery解析
+# 使用pyquery解析
 
 """
 :param html_code  attr? 类似href src
@@ -48,11 +48,15 @@ class QS(Selector):
                 return None
         return pq_content(self.rule)[0].attr(self.attr,None)
 
-#使用xpath解析
+# 使用xpath解析
+
+
 """
 :param html_code  attr? 类似href src
 :return str
 """
+
+
 class XS(Selector):
     def parse_detail(self,html):
         xp_content = etree.HTML(html)
@@ -63,11 +67,15 @@ class XS(Selector):
         except IndexError:
             return None
 
-#使用正则表达式解析
+# 使用正则表达式解析
+
+
 """
 :param html_code  attr? 类似href src
 :return str
 """
+
+
 class RS(Selector):
     def parse_detail(self, html):
         try:

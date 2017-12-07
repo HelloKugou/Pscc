@@ -29,6 +29,8 @@ class BaseParser(object):
         # 改用了布隆过滤器的结构
         self.filter_urls = BFS.bset
         self.done_urls = []
+        #重试次数
+        self.retry = 3
 
     """
     解析子域名
@@ -60,18 +62,18 @@ class BaseParser(object):
         url = '{}'.format(urls)
         if not BFS.inable(url):
             self.filter_urls.add(url)
-            self.pre_parse_urls.append(url)
+            self.pre_parse_urls.append((url, self.retry))
 
     def parse_item(self, html):
         item = self.item(html)
         return item
 
-    async def execute_url(self, url, spider, session, semaphore):
-        html = await fetch(url, spider, session, semaphore)
-
+    async def execute_url(self, url, retry, spider, session, semaphore):
+        html = await fetch(url, retry, spider, session, semaphore)
         if html is None:
-            spider.error_urls.append(url)
-            self.pre_parse_urls.append(url)
+            if retry >= 1:
+                spider.error_urls.append(url)
+                self.pre_parse_urls.append((url, retry-1))
             return None
 
         if url in spider.error_urls:
@@ -100,11 +102,15 @@ class BaseParser(object):
         with aiohttp.ClientSession(connector=conn) as session:
             while spider.is_running():
                 if len(self.pre_parse_urls) == 0:
-                    await asyncio.sleep(0.5)
-                    continue
-                url = self.pre_parse_urls.pop()
+                    if self.retry:
+                        await asyncio.sleep(1)
+                        self.retry -= 1
+                        continue
+                    else:
+                        break
+                url, retry = self.pre_parse_urls.pop()
                 self.parsing_urls.append(url)
-                asyncio.ensure_future(self.execute_url(url, spider, session, semaphore))
+                asyncio.ensure_future(self.execute_url(url, retry, spider, session, semaphore))
 
 
 class Parser(BaseParser):

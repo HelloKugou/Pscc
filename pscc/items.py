@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
 
 from pscc.selector import Selector
 from html import unescape
@@ -45,7 +45,6 @@ class Item(metaclass=ItemType):
 
     @classmethod
     def count_add(cls, value=1):
-
         cls._item_count += value
 
     def __getattr__(self, item):
