@@ -4,7 +4,7 @@
 # __datetime__=""
 # __purpose__=""
 
-from utils.Error import (
+from pscc.utils.Error import (
                     NoKeyError
                         )
 

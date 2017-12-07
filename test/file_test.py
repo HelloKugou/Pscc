@@ -7,10 +7,9 @@
 """顶层包引入"""
 import sys
 sys.path.append("/root/Downloads/Pscc")
-from store.aio_file.control import AWrite
 
 """引入基本包，受__all__限制"""
-from pscc import (XS, Item, XPathParser, Spider)
+from pscc import (XS, Item, XPathParser, Spider,fsave)
 
 """构建子域名处理方法"""
 
@@ -20,7 +19,7 @@ class Title(Item):
     title = XS('//h1[@id="articleTitle"]')
 
     async def save(self):
-        save = AWrite("test.text", data=self.title, ftype="w+")
+        save = fsave.AWrite("test.text", data=self.title, ftype="w+")
         await save.control()
 
 

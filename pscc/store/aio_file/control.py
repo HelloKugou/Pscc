@@ -4,11 +4,13 @@
 # __datetime__=""
 # __purpose__="读写文本的基本操作"
 
-from aiofiles import os as fio
 import asyncio
+
 import aiofiles
+
 # 日志配置
-from utils.Logconfig import load_my_logging_cfg
+from pscc.utils.Logconfig import load_my_logging_cfg
+
 logger = load_my_logging_cfg("crawler_status")
 
 # 异步操作文件夹

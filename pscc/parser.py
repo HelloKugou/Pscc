@@ -6,10 +6,11 @@ from urllib.parse import urljoin
 import aiohttp
 from aiohttp import AsyncResolver
 from lxml import etree
-import re
+from pscc.utils.Logconfig import load_my_logging_cfg
+
 from pscc.requests import fetch
-from utils.Logconfig import load_my_logging_cfg
-from utils.bloom_filter import BFS
+from pscc.utils.bloom_filter import BFS
+
 logger = load_my_logging_cfg("crawler_status")
 from config import DevConfig
 

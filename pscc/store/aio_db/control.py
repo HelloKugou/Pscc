@@ -4,11 +4,14 @@
 # __datetime__=""
 # __purpose__="数据库基本操作"
 
+import asyncio
+
 # 使用uvloop代替asyncio的eventloop
 import aiomysql
-import asyncio
+
 # 日志配置
-from utils.Logconfig import load_my_logging_cfg
+from pscc.utils.Logconfig import load_my_logging_cfg
+
 logger = load_my_logging_cfg("crawler_status")
 loop = asyncio.get_event_loop()
 # 导入配置库

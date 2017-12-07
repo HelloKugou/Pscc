@@ -3,10 +3,11 @@ import re
 from datetime import datetime
 
 import aiohttp
-from pscc.requests import fetch
-from pscc.requests import api_requests
 
-from utils.Logconfig import load_my_logging_cfg
+from pscc.requests import api_requests
+from pscc.requests import fetch
+from pscc.utils.Logconfig import load_my_logging_cfg
+
 # from config import DevConfig
 logger = load_my_logging_cfg("crawler_status")
 

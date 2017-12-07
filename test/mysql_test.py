@@ -10,7 +10,7 @@ sys.path.append("/root/Downloads/Pscc")
 
 """引入基本包，受__all__限制"""
 from pscc import (XS, Item, XPathParser, Spider)
-from store.aio_db.control import Insert
+from pscc.store import Insert
 """构建子域名处理方法"""
 
 
