@@ -10,7 +10,7 @@ sys.path.append("/root/Downloads/Pscc")
 
 """引入基本包，受__all__限制"""
 from pscc import (XS, Item, XPathParser, Spider)
-from pscc.store import Insert
+from pscc import dbsave
 """构建子域名处理方法"""
 
 
@@ -19,7 +19,7 @@ class Title(Item):
     title = XS('//h1[@id="articleTitle"]')
 
     async def save(self):
-        save = Insert(table="user", fl={"username": self.title})
+        save = dbsave.Insert(table="user", fl={"username": self.title})
         await save.contorl()
         # pass
 
