@@ -18,7 +18,7 @@ reqcfg = DevConfig().request
 rescfg = DevConfig().response
 
 
-async def fetch(url, spider, session, semaphore):
+async def fetch(url, retry, spider, session, semaphore):
     with (await semaphore):
         try:
             if callable(spider.headers):
@@ -26,14 +26,17 @@ async def fetch(url, spider, session, semaphore):
                 headers = spider.headers()
             else:
                 headers = spider.headers
-            async with session.get(url, headers=headers, proxy=spider.proxy(), timeout=int(reqcfg("timeout"))) as response:
+            async with session.get(url, headers=headers,
+                                   proxy=spider.proxy(),
+                                   timeout=int(reqcfg("timeout")),
+                                   params=spider.params) as response:
                 if rescfg(response.status)[0]:
                     try:
                         data = await response.text()
                     except:
                         data = await response.text(encoding="gbk")
                     return data
-                logger.error('Error: {} {} {}'.format(url, response.status,rescfg(response.status)[1]))
+                logger.error('Error: {} {} retry remaining-{} {}'.format(url, response.status, retry, rescfg(response.status)[1]))
                 return None
         except:
             pass
