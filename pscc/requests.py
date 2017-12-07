@@ -17,14 +17,9 @@ from config import DevConfig
 reqcfg = DevConfig().request
 rescfg = DevConfig().response
 
-<<<<<<< HEAD
-t
-async def fetch(url, spider, session, semaphore):
-=======
 
 async def fetch(url, retry, spider, session, semaphore):
     """普通请求方式"""
->>>>>>> develop
     with (await semaphore):
         try:
             if callable(spider.headers):
