@@ -8,7 +8,7 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 #大家都有什么建议，以及想要批评我的地方都快向我砸过来，提提issues,
 #如果大家感觉我的这个爬虫想法还挺好，那就赶快来！
 
-经过一周的努力，终于在空闲时间完成了这个爬虫的框架，目前阶段还是在测试框架的稳定性，测试好了之后会放上来
+完整的功能是[master](https://github.com/PythonScientists/Pscc/tree/master)的分支，想要看最新的改动切换到[develop](https://github.com/PythonScientists/Pscc/tree/develop)分支就好。
 
 # 一 . 终极目标
 
@@ -36,7 +36,7 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 
 
-### 四-一 . 基本使用(也可以去[**test**](https://github.com/PythonScientists/Pscc/tree/master/test)目录下查看)，当然，为了方便，可以直接在test文件夹下放置爬虫脚本，由[**start_up.py**](https://github.com/PythonScientists/Pscc/blob/master/start_up.py)文件直接启动多个脚本
+### 四-一 . 一 基本使用(也可以去[**test**](https://github.com/PythonScientists/Pscc/tree/master/test)目录下查看)，当然，为了方便，可以直接在test文件夹下放置爬虫脚本，由[**start_up.py**](https://github.com/PythonScientists/Pscc/blob/master/start_up.py)文件直接启动多个脚本
 
 ```
 #!/usr/bin/env python3
@@ -60,6 +60,59 @@ if __name__ == '__main__':
     #启动
     MySpider.run()
 ```
+
+### 四-一 . 二 调用数据库存储，已经在项目写好数据库接口，方便直接调用[数据库配置](https://github.com/PythonScientists/Pscc/blob/develop/store/aio_db/control.py)
+
+```
+#!/usr/bin/env python3
+#-*-coding:utf-8-*-
+# __all__=""
+# __datetime__="2017-11-28"
+# __purpose__="基本使用"
+
+"""顶层包引入"""
+import sys
+sys.path.append("/root/Downloads/Pscc")
+
+"""引入基本包，受__all__限制"""
+from pscc import (XS, Item, XPathParser, Spider)
+from store.aio_db.control import Insert
+"""构建子域名处理方法"""
+
+
+class Title(Item):
+
+    title = XS('//h1[@id="articleTitle"]')
+
+    async def save(self):
+        save = Insert(table="user", fl={"username": self.title})
+        await save.contorl()
+        # pass
+
+
+"""初始爬虫"""
+
+
+class MySpider(Spider):
+    # 不启用代理
+    proxyable = False
+    # 添加初始域名
+    start_url = 'http://difang.gmw.cn/jl/node_12998.htm'
+    # start_url = 'https://google.com/'
+    # 重试次数
+    concurrency = 5
+    headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
+                              '(KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')}
+    # 解析出子域名，再由Title类解析
+    parsers = [
+               XPathParser('//ul[@class="channel-newsGroup"][1]/li/a/@href', Title)
+              ]
+
+
+if __name__ == '__main__':
+    # 启动
+    MySpider.run()
+```
 #### 具体可以看下列图示
 
 
@@ -72,6 +125,11 @@ if __name__ == '__main__':
 ### 四-二  . 安装依赖
 
 根据`Kenneth Reitz`的《Pyhon最佳实践》中构建虚拟环境的方式，初次尝试使用`Pipenv`这个工具来构建，进一步拓展还在探索中，这个库是基于`Virtualevn`库之上的，因此也是更佳简单使用,使用的时候直接在根目录下使用`pipenv install`即可，`pipenv`会自动寻找`pipfile`对里面的依赖进行下载
+
+### 四-三  . 运行方式
+
+由于项目是基于`pipenv`环境启动，在第二步安装完依赖之后，就可以启动项目，可以把爬虫脚本放置在默认的脚本目录当中，就是`test`目录，然后启动方式如下
+`pipenv run python start_up.py --d test`,`start_up.py`为启动脚本，`--d`是选择启动目录
 
 # 五 . 改进方向
 
@@ -170,4 +228,4 @@ if __name__ == '__main__':
 
 # 继续开发模块中。。。
 
-2017.12.02 改进启动模块，具体可看上面的[启动图示](####具体可以看下列图示)
+2017.12.02 改进启动模块，具体可看

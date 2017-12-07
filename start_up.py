@@ -8,6 +8,7 @@ import os
 import subprocess
 import click
 
+
 class Run:
     """封装启动方法"""
     def __init__(self, dirname):
@@ -78,12 +79,13 @@ def start_up(d):
             try:
                 os.mkdir(d)
                 click.secho(
-                    "以创建'{}'目录，请放置爬虫脚本".format(d),
+                    "已创建'{}'目录，请放置爬虫脚本".format(d),
                     bg="green",
                     underline=True
                 )
             except Exception as e:
                 pass
+
 
 if __name__ == "__main__":
     """更改爬虫脚本目录，启动程序"""

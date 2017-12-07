@@ -1,9 +1,11 @@
 #!/usr/bin/env python
-#-*-coding:utf-8-*-
+# -*-coding:utf-8-*-
+
+from html import unescape
 
 from pscc.selector import Selector
-from html import unescape
-from utils.Logconfig import load_my_logging_cfg
+from pscc.utils.Logconfig import load_my_logging_cfg
+
 logger = load_my_logging_cfg("crawler_status")
 
 
@@ -45,7 +47,6 @@ class Item(metaclass=ItemType):
 
     @classmethod
     def count_add(cls, value=1):
-
         cls._item_count += value
 
     def __getattr__(self, item):

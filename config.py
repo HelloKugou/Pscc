@@ -4,7 +4,7 @@
 # __datetime__=""
 # __purpose__=""
 
-from utils.Error import (
+from pscc.utils.Error import (
                     NoKeyError
                         )
 
@@ -55,6 +55,25 @@ class Config:
             raise NoKeyError(cfg)
 
     """定义网页编码"""
+    """定义数据库连接"""
+    class MySQLCfg:
+        def __init__(self):
+            self.mcfg = self.get_cfg()
+
+        def get_cfg(self):
+            conn_dt = {
+                        "host": "127.0.0.1",
+                        "port": 3306,
+                        "database": "shape",
+                        "password": "linhanqiu",
+                        "user": "linhanqiu",
+                        "charset": "utf8"
+                       }
+            return conn_dt
+
+        def __getattr__(self, item):
+            return self.mcfg.get(item)
+
 
 class DevConfig(Config):
     pass
@@ -64,9 +83,3 @@ class ProConfig(Config):
     pass
 
 
-# 测试获取cfg
-# a = DevConfig()
-# try:
-#     print(type(a.response(200)))
-# except NoKeyError as e:
-#     print(e)
