@@ -19,6 +19,8 @@ pscc.Item(                 pscc.Parser(               pscc.Selector(            
 pscc.Logger                pscc.QS(                   pscc.Spider(               pscc.config                pscc.load_my_logging_cfg(  pscc.spider     
 ```
 
+可以在这个网址看到[pscc](https://pypi.python.org/pypi?:action=files&name=pscc&version=0.1.0)的模块详情
+
 目前在自己的服务器上部署了爬虫的ip代理池，有需要的小伙伴来找我把！！！！
 
 完整的功能是[master](https://github.com/PythonScientists/Pscc/tree/master)的分支，想要看最新的改动切换到[develop](https://github.com/PythonScientists/Pscc/tree/develop)分支就好。
