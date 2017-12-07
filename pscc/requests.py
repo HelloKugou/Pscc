@@ -17,7 +17,7 @@ from config import DevConfig
 reqcfg = DevConfig().request
 rescfg = DevConfig().response
 
-
+t
 async def fetch(url, spider, session, semaphore):
     with (await semaphore):
         try:
