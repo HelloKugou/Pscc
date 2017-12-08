@@ -10,7 +10,7 @@ except ImportError as e:
 
 from pscc.utils.Logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("crawler_status")
-from config import DevConfig
+from pscc.config import DevConfig
 
 
 """实例化配置"""
@@ -58,6 +58,19 @@ async def api_requests(url, spider, method, session, semaphore):
                                        proxy=spider.proxy(),
                                        timeout=int(reqcfg("timeout")),
                                        params=spider.params) as response:
+                    if rescfg(response.status)[0]:
+                        try:
+                            data = await response.text()
+                        except UnicodeEncodeError as e:
+                            data = await response.text(encoding="gbk")
+                        return data
+                    logger.error('Requests Errors: {} {}  {}'.format(url, response.status, rescfg(response.status)[1]))
+                    return None
+            elif method == "post":
+                async with session.post(url, headers=headers,
+                                        proxy=spider.proxy(),
+                                        timeout=int(reqcfg("timeout")),
+                                        params=spider.params) as response:
                     if rescfg(response.status)[0]:
                         try:
                             data = await response.text()

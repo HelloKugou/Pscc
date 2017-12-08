@@ -104,9 +104,10 @@ class Spider:
         with aiohttp.ClientSession() as session:
             if not cls.api_method:
                 cls.api_method="get"
-                print(cls.api_method)
-                html = await api_requests(cls.start_url, cls, cls.api_method, session, semaphore)
-                print(html)
+            print(cls.api_method)
+            html = await api_requests(cls.start_url, cls, cls.api_method, session, semaphore)
+            print(html)
+
 
 if __name__ == "__main__":
     class T(Spider):

@@ -30,6 +30,7 @@ class MySpider(Spider):
     # start_url = 'https://google.com/'
     # 启用api爬取
     api = True
+    api_method = "post"
     headers = {'User-Agent': ('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 '
                               '(KHTML, like Gecko) Chrome/60.0.3112.101 Safari/537.36')}
     # 解析出子域名，再由Title类解析

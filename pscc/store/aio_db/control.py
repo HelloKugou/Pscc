@@ -15,7 +15,7 @@ from pscc.utils.Logconfig import load_my_logging_cfg
 logger = load_my_logging_cfg("crawler_status")
 loop = asyncio.get_event_loop()
 # 导入配置库
-from config import DevConfig
+from pscc.config import DevConfig
 # 实例数据库配置
 mcfg = DevConfig().MySQLCfg()
 
