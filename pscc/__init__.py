@@ -28,5 +28,8 @@ from .utils import Mail
 # 存储模块
 from .store.aio_file import control as fsave
 from .store.aio_db import control as dbsave
+
+# 插件系统
+from .plugin import PluginSystem as Plugin
 # 限制import
-__all__ = ("Item", "Parser", "RS", "QS", "XS", "Spider", "Logger", "XPathParser", "Mail", "dbsave", "fsave")
+__all__ = ("Item", "Parser", "RS", "QS", "XS", "Spider", "Logger", "XPathParser", "Mail", "dbsave", "fsave", "Plugin")
