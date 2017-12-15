@@ -74,6 +74,7 @@ async def api_requests(url, spider, method, session, semaphore):
                     if rescfg(response.status)[0]:
                         try:
                             data = await response.text()
+
                         except UnicodeEncodeError as e:
                             data = await response.text(encoding="gbk")
                         return data
