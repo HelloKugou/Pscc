@@ -8,6 +8,21 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 #大家都有什么建议，以及想要批评我的地方都快向我砸过来，提提issues,
 #如果大家感觉我的这个爬虫想法还挺好，那就赶快来！
 
+## 终于退出了`pscc`这个爬虫的第一版，版本号(0.1.0)，希望大家能够多多支持，来一起完善这个爬虫框架
+```
+$python setup.py install
+$python
+>>> import pscc
+>>> pscc.
+pscc.BaseParser(           pscc.Mail                  pscc.RS(                   pscc.XPathParser(          pscc.dbsave                pscc.parser                pscc.store                 
+pscc.Item(                 pscc.Parser(               pscc.Selector(             pscc.XS(                   pscc.fsave                 pscc.requests              
+pscc.Logger                pscc.QS(                   pscc.Spider(               pscc.config                pscc.load_my_logging_cfg(  pscc.spider     
+```
+
+可以在这个网址看到[pscc](https://pypi.python.org/pypi?:action=files&name=pscc&version=0.1.0)的模块详情
+
+目前在自己的服务器上部署了爬虫的ip代理池，有需要的小伙伴来找我把！！！！
+
 完整的功能是[master](https://github.com/PythonScientists/Pscc/tree/master)的分支，想要看最新的改动切换到[develop](https://github.com/PythonScientists/Pscc/tree/develop)分支就好。
 
 # 一 . 终极目标
@@ -229,12 +244,11 @@ if __name__ == '__main__':
 # 继续开发模块中。。。
 
 2017.12.02 改进启动模块，具体可看
-<<<<<<< HEAD
-2017。12.05-07 新增存储模块，系统配置数据库即可
+
+2017.12.05-07 新增存储模块，系统配置数据库即可
+
+2017.12.08 完善api的方法
 
 # 发现的bug
 
-=======
-
-2017.12.08 新增
->>>>>>> 20e1b2ec91dbf84755bcf9c70897b24d4b577e5f
+2017.12.15 如何应对网页编码问题以及应对压缩网页的问题
