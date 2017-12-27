@@ -49,6 +49,7 @@ pscc.Logger                pscc.QS(                   pscc.Spider(              
 
 # 四 . 了解框架
 
+![pscc模块以及运行流程图](https://github.com/PythonScientists/Pscc/blob/master/help/proces.png)
 
 
 ### 四-一 . 一 基本使用(也可以去[**test**](https://github.com/PythonScientists/Pscc/tree/master/test)目录下查看)，当然，为了方便，可以直接在test文件夹下放置爬虫脚本，由[**start_up.py**](https://github.com/PythonScientists/Pscc/blob/master/start_up.py)文件直接启动多个脚本
