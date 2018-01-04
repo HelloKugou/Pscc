@@ -20,7 +20,7 @@ from .parser import (Parser, BaseParser, XPathParser)
 from .selector import Selector,RS,QS,XS
 
 # 爬虫模块
-from .spider import Spider
+from .spider import Spider,ApiSpider
 
 # 工具模块
 from .utils import Mail
@@ -30,6 +30,6 @@ from .store.aio_file import control as fsave
 from .store.aio_db import control as dbsave
 
 # 插件系统
-from .plugin import PluginSystem as Plugin
+from .plugin import PluginSystem as Plugpin
 # 限制import
-__all__ = ("Item", "Parser", "RS", "QS", "XS", "Spider", "Logger", "XPathParser", "Mail", "dbsave", "fsave", "Plugin")
+__all__ = ("Item", "Parser", "RS", "QS", "XS", "Spider", "ApiSpider","Logger", "XPathParser", "Mail", "dbsave", "fsave", "Plugin")
