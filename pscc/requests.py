@@ -80,6 +80,6 @@ async def api_requests(url, spider, method, session, semaphore):
                         return data
                     logger.error('Requests Errors: {} {}  {}'.format(url, response.status, rescfg(response.status)[1]))
                     return None
-        except:
-            pass
+        except Exception as e:
+            print(e)
     return None
