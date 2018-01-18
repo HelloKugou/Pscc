@@ -1,12 +1,6 @@
-#!/usr/bin/env python
-# -*-coding:utf-8-*-
-
+from .log import logger
+from .selector import Selector
 from html import unescape
-
-from pscc.selector import Selector
-from pscc.utils.Logconfig import load_my_logging_cfg
-
-logger = load_my_logging_cfg("crawler_status")
 
 
 class ItemType(type):
@@ -59,3 +53,6 @@ class Item(metaclass=ItemType):
             await self.__result__.save(self.results)
         else:
             raise NotImplementedError
+
+    def __repr__(self):
+        return '<item {}>'.format(self.results)
