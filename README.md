@@ -12,7 +12,7 @@ PSC组织推出的Python3异步爬虫框架-Pscc，主要也是结合了aiohttp,
 
 ## 终于推出了`pscc`这个爬虫的第一版，版本号(0.1.0)，希望大家能够多多支持，来一起完善这个爬虫框架,
 ```
-```
+
 $python setup.py install
 $python
 >>> import pscc
