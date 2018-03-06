@@ -18,7 +18,7 @@ $python
 >>> import pscc
 >>> pscc.
 pscc.BaseParser(           pscc.Mail                  pscc.RS(                   pscc.XPathParser(          pscc.dbsave                pscc.parser                pscc.store                 
-pscc.Item(       ·   。       pscc.Parser(               pscc.Selector(             pscc.XS(                   pscc.fsave                 pscc.requests              
+pscc.Item(             pscc.Parser(               pscc.Selector(             pscc.XS(                   pscc.fsave                 pscc.requests              
 pscc.Logger                pscc.QS(                   pscc.Spider(               pscc.config                pscc.load_my_logging_cfg(  pscc.spider     
 ```
 
