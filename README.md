@@ -83,7 +83,7 @@ if __name__ == '__main__':
 ### 四-一 . 二 调用数据库存储，已经在项目写好数据库接口，方便直接调用[数据库配置](https://github.com/PythonScientists/Pscc/blob/develop/store/aio_db/control.py)
 
 ```
-#!/usr/bin/env python3
+#!/usr/bin/env python3.6
 #-*-coding:utf-8-*-
 # __all__=""
 # __datetime__="2017-11-28"
