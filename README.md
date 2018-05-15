@@ -1,4 +1,4 @@
-# Pscc 一套真的“能用”的框架：smile
+# Pscc 一套真的“能用”的框架：smile!!
 ![](https://img.shields.io/badge/time-3day-red.svg)
 ![](https://img.shields.io/badge/build-passing-brightgreen.svg)
 
